@@ -1,4 +1,11 @@
 /**
+ * 
+ */
+package animal;
+
+import point.Point;
+
+/**
  * @author NIM / Nama  : 13515032,13515144 / Helena Suzane Graciella, William
  *  Nama file  : Animal.java
  */
@@ -9,6 +16,7 @@ public abstract class Animal {
   protected int hp;
   protected final int defaultHP;
   protected int speed;
+  protected final static Point defaultPosition = new Point(0,0);
   /**
    * Konstruktor.
    */
@@ -16,6 +24,7 @@ public abstract class Animal {
     score = 0;
     position.setAbsis(0);
     position.setOrdinat(0);
+    defaultHP = 1;
     hp = 100;
     speed = 0;
   }
@@ -29,7 +38,8 @@ public abstract class Animal {
   public Animal(int parScore, Point parPosition, int parHP, int parSpeed) {
     score = parScore;
     position = parPosition;
-    hp = parHP;
+    defaultHP = parHP;
+    hp = defaultHP;
     speed = parSpeed;
   }
   /**
@@ -110,5 +120,3 @@ public abstract class Animal {
      speed += changeDifference; 
    }
 }
-  
-  

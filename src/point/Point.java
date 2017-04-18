@@ -1,26 +1,38 @@
+package point;
+
 /**
  * @author NIM / Nama  : xxxxxxxxxxxxxxx
  *  Nama file  : Point.java
  */
 
 public class Point {
-	private int absis;
-	private int ordinat;
+  private int absis;
+  private int ordinat;
   
-	public void setAbsis(int parAbsis) {
-		absis = parAbsis;
-	}
+  public Point() {
+    absis = 0;
+    ordinat = 0;
+  }
   
-  public int getAbsis(int parAbsis) {
-		return absis;
-	}
+  public Point(int parAbsis, int parOrdinat) {
+    absis = parAbsis;
+    ordinat = parOrdinat;
+  }
   
-	public void setOrdinat(int parOrdinat) {
-		ordinat = parOrdinat;
-	}
+  public void setAbsis(int parAbsis) {
+    absis = parAbsis;
+  }
   
-  public int getOrdinat(int parOrdinat) {
-		return ordinat;
-	}
+  public int getAbsis() {
+    return absis;
+  }
+  
+  public void setOrdinat(int parOrdinat) {
+    ordinat = parOrdinat;
+  }
+  
+  public int getOrdinat() {
+    return ordinat;
+  }
   
 }

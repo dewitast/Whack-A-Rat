@@ -4,6 +4,7 @@
 package animal.mole;
 
 import animal.Animal;
+import point.Point;
 
 /**
  * @author suzaneringoringo
@@ -16,11 +17,11 @@ public class Mole extends Animal {
    */
   public Mole() {
     // TODO Auto-generated constructor stub
-    super(5, 1, 1);
+    super(5, defaultPosition, 1, 1);
   }
   
-  public Mole(int _score, int _defaultHP, int _speed) {
-    super(_score, _defaultHP, _speed);
+  public Mole(int parScore, Point parPoint, int parDefaultHP, int parSpeed) {
+    super(parScore, parPoint, parDefaultHP, parSpeed);
   }
 
 }
