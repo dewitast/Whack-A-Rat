@@ -1,58 +1,114 @@
 /**
- * 
+ * @author NIM / Nama  : 13515032,13515144 / Helena Suzane Graciella, William
+ *  Nama file  : Animal.java
  */
-package animal;
 
-/**
- * @author suzaneringoringo
- *
- */
 public abstract class Animal {
-  int score;
-  int hp;
-  final int defaultHP;
-  int speed;
-  
-  protected Animal(int _score, int _defaultHP, int _speed) {
-    score = _score;
-    defaultHP = _defaultHP;
-    hp = defaultHP;
-    speed = _speed;
+  protected int score;
+  protected Point position;
+  protected int hp;
+  protected final int defaultHP;
+  protected int speed;
+  /**
+   * Konstruktor.
+   */
+  public Animal() {
+    score = 0;
+    position.setAbsis(0);
+    position.setOrdinat(0);
+    hp = 100;
+    speed = 0;
   }
-  
+  /**
+   * Konstruktor dengan parameter.
+   * @param parScore skor yang didapat jika membunuh hewan
+   * @param parPosition lokasi hewan
+   * @param parHP health point hewan
+   * @param parSpeed kecepatan hewan
+   */
+  public Animal(int parScore, Point parPosition, int parHP, int parSpeed) {
+    score = parScore;
+    position = parPosition;
+    hp = parHP;
+    speed = parSpeed;
+  }
+  /**
+   * Mengembalikan skor binatang
+   * @return skor binatang
+   */
   public int getScore() {
     return score;
   }
-  
-  public void setScore(int _score) {
-    score = _score;
+  /**
+   * Mengembalikan posisi binatang
+   * @return posisi binatang
+   */
+  public Point getPosition() {
+    return position;
   }
-  
+   /**
+   * Mengembalikan health point
+   * @return health point binatang
+   */
   public int getHP() {
     return hp;
   }
-  
-  public void setHP(int _HP) {
-    hp = _HP;
-  }
-  
-  public void reduceHP(int reducer) {
-    hp = hp - reducer;
-  }
-  
-  public int getDefaultHP() {
-    return defaultHP;
-  }
-  
+   /**
+   * Mengembalikan kecepatan binatang
+   * @return kecepatan binatang
+   */
   public int getSpeed() {
     return speed;
   }
-  
-  public void setSpeed(int _speed) {
-    speed = _speed;
+    /**
+   * Mengatur skor binatang
+   * @param skor binatang
+   */
+  public void setScore(int parScore) {
+    score = parScore;
   }
-  
-  public void increaseSpeed(int increaser) {
-    speed = speed + increaser;
+  /**
+   * Mengatur posisi binatang
+   * @param posisi binatang
+   */
+  public void setPosition(Point parPosition) {
+    position = parPosition;
   }
+   /**
+   * Mengatur health point
+   * @param health point binatang
+   */
+  public void setHP(int parHP) {
+    hp = parHP;
+  }
+   /**
+   * Mengatur kecepatan binatang
+   * @param kecepatan binatang
+   */
+  public void setSpeed(int parSpeed) {
+    speed = parSpeed;
+  }
+  /**
+   * Mengembalikan mati/hidup binatang
+   * @return true jika mati, false jika hidup
+   */
+   public boolean isDead() {
+     return (hp<=0);
+   }
+   /**
+   * Mengurangi HP binatang
+   * @param banyaknya pengurang HP
+   */
+   public void decreaseHP(int power) {
+     hp -= power;
+   }
+    /**
+   * Mengubah kecepatan binatang
+   * @param besarnya perubahan
+   */
+   public void changeSpeed(int changeDifference) {
+     speed += changeDifference; 
+   }
 }
+  
+  
