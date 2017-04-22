@@ -1,8 +1,4 @@
-/**
- * 
- */
 package animal;
-
 import point.Point;
 
 /**

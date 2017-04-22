@@ -7,7 +7,7 @@ import point.Point;
  *  Nama file  : Weapon.java
  */
 
-abstract class Weapon {
+public abstract class Weapon {
   private Point position;
   private int power;
 
