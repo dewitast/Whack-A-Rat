@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/b.png</name>
+			<type>1</type>
+			<location>/home/nim_13515021/Desktop/Test/b.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
