@@ -12,11 +12,18 @@ public class Hamster extends Animal {
    * Kosntruktor
    */
   public Hamster() {
-    // TODO Auto-generated constructor stub
-    super(-5, defaultPosition, 1, 1);
+    super(-5, defaultPosition, 1, 1, null);
   }
   
-  public Hamster(int parScore, Point parPoint, int parDefaultHP, int parSpeed) {
-    super(parScore, parPoint, parDefaultHP, parSpeed);
+  /**
+   * Konstruktor dengan parameter.
+   * @param parScore skor yang didapat jika membunuh hewan
+   * @param parPosition lokasi hewan
+   * @param parHP health point hewan
+   * @param parSpeed kecepatan hewan
+   * @param parFile string berisi nama file yang menunjukkan nama hewan.
+   */
+  public Hamster(int parScore, Point parPoint, int parDefaultHP, int parSpeed, String parFile) {
+    super(parScore, parPoint, parDefaultHP, parSpeed, parFile);
   }
 }

@@ -13,6 +13,8 @@ public abstract class Animal {
   protected final int defaultHP;
   protected int speed;
   protected final static Point defaultPosition = new Point(0,0);
+  protected String file;
+  
   /**
    * Konstruktor.
    */
@@ -23,6 +25,7 @@ public abstract class Animal {
     defaultHP = 1;
     hp = 100;
     speed = 0;
+    file = "";
   }
   /**
    * Konstruktor dengan parameter.
@@ -30,13 +33,15 @@ public abstract class Animal {
    * @param parPosition lokasi hewan
    * @param parHP health point hewan
    * @param parSpeed kecepatan hewan
+   * @param parFile string berisi nama file yang menunjukkan nama hewan.
    */
-  public Animal(int parScore, Point parPosition, int parHP, int parSpeed) {
+  public Animal(int parScore, Point parPosition, int parHP, int parSpeed, String parFile) {
     score = parScore;
     position = parPosition;
     defaultHP = parHP;
     hp = defaultHP;
     speed = parSpeed;
+    file = parFile;
   }
   /**
    * Mengembalikan skor binatang
@@ -65,6 +70,13 @@ public abstract class Animal {
    */
   public int getSpeed() {
     return speed;
+  }
+  /**
+   * Mengembalikan nama file yang merepresentasikan binatang.
+   * @return nama file yang merepresentasikan binatang.
+   */
+  public String getNamaFile() {
+	  return file;
   }
     /**
    * Mengatur skor binatang

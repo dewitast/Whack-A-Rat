@@ -8,16 +8,22 @@ import point.Point;
  * file : Chick.java
  */
 public class Chick extends Animal {
-
+	
   /**
    * Kosntruktor
    */
   public Chick() {
-    // TODO Auto-generated constructor stub
-    super(-5, defaultPosition, 1, 1);
+    super(-5, defaultPosition, 1, 1, null);
   }
   
-  public Chick(int parScore, Point parPoint, int parDefaultHP, int parSpeed) {
-    super(parScore, parPoint, parDefaultHP, parSpeed);
+  /**
+   * Konstruktor dengan parameter.
+   * @param parScore skor yang didapat jika membunuh hewan
+   * @param parPosition lokasi hewan
+   * @param parHP health point hewan
+   * @param parSpeed kecepatan hewan
+   */
+  public Chick(int parScore, Point parPoint, int parDefaultHP, int parSpeed, String parFile) {
+    super(parScore, parPoint, parDefaultHP, parSpeed, parFile);
   }
 }
