@@ -1,57 +1,78 @@
- package weapon;
+package weapon;
 
 import java.awt.*;
-import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * This class demonstrates how to load an Image from an external file
  */
-public class WeaponView {
-  JFrame jf;
-  private BufferedImage img;
+public class WeaponView extends JPanel {
+  private static final long serialVersionUID = 3660825063037349659L;
+  private final String image;
+  private final String imageclicked;
+  private Image imgclicked;
+  private Image img;
   
   /*
    * Konstruktor dengan parameter.
    * @param namaFile string yang berisi nama file.
    */
-  public WeaponView(JFrame jfr, String namaFile) {
-	jf = jfr;
-	try {
-	  img = ImageIO.read(new File(namaFile));
-	} catch(IOException ex) {
-	}
+  public WeaponView(String file, String fileClicked) {
+    image = file;
+    imageclicked = fileClicked;
+	  try {
+	    img = ImageIO.read(new File(image));
+	    //img = img.getScaledInstance(64, 64, 1);
+	    imgclicked = ImageIO.read(new File(imageclicked));
+	    //imgclicked = imgclicked.getScaledInstance(64, 64, 1);
+	    resetCursor();
+	  } catch(IOException ex) {
+	  }
   }
   
-  public Cursor getCursor() {
-	Toolkit tk = Toolkit.getDefaultToolkit();
-	Image im = img.getScaledInstance(64, 64, 1); 
-	img = new BufferedImage(im.getWidth(null), im.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-	Graphics2D gr = img.createGraphics();
-	gr.drawImage(im, 0, 0, null);
-	gr.dispose();
-	Point hotspot = new Point(0, 0);
-	Cursor cursor = tk.createCustomCursor((Image)img, hotspot, "palu");
-	return cursor;
+  /*
+   * Mengembalikan image untuk kursor.
+   * @return image untuk kursor.
+   */
+  public Image getImage() {
+    assert(img != null);
+    return img;
   }
   
-  public void rotate(double angle) {
-    double sin = Math.abs(Math.sin(angle));
-    double cos = Math.abs(Math.cos(angle));
-    int width = img.getWidth();
-    int height = img.getHeight();
-    int newwidth = (int)Math.floor(width * cos + height * sin);
-    int newheight = (int)Math.floor(height * cos + width * sin);
-    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-    GraphicsDevice gd = ge.getDefaultScreenDevice();
-    GraphicsConfiguration gc = gd.getDefaultConfiguration();
-    img = gc.createCompatibleImage(newwidth, newheight, Transparency.TRANSLUCENT);
-    Graphics2D gr = img.createGraphics();
-    gr.translate((newwidth - width) / 2, (newheight - height) / 2);
-    gr.rotate(angle, width / 2, height / 2);
-    gr.drawRenderedImage(img, null);
-    jf.setCursor(getCursor());
+  /*
+   * Mengembalikan image untuk kursor ketika diklik.
+   * @return image untuk kursor ketika diklik.
+   */
+  public Image getImageClicked() {
+    assert(imgclicked != null);
+    return imgclicked;
+  }
+  
+  /*
+   * Mengatur kursor dalam keadaan biasa.
+   * I.S. image terdefinisi
+   * F.S. kursor untuk tampilan senjata berubah menjadi sesuai image.
+   */
+  public void resetCursor() {
+    assert(img != null);
+	  Toolkit tk = Toolkit.getDefaultToolkit();
+	  Point hotspot = new Point(0, 0);
+	  Cursor cursor = tk.createCustomCursor(img, hotspot, "palu1");
+	  setCursor(cursor);
+  }
+  
+  /*
+   * Mengatur kursor dalam ketika diklik.
+   * I.S. imageclicked terdefinisi
+   * F.S. kursor untuk tampilan senjata berubah menjadi sesuai image.
+   */
+  public void resetCursorClicked() {
+    assert(imgclicked != null);
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Point hotspot = new Point(0, 0);
+    Cursor cursor = tk.createCustomCursor(imgclicked, hotspot, "palu2");
+    setCursor(cursor);
   }
 }

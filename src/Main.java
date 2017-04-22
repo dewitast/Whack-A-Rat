@@ -9,6 +9,9 @@ import weapon.Weapon;
 import weapon.WeaponController;
 import weapon.WeaponView;
 import weapon.type.Hammer;
+import weapon.type.HammerView;
+import weapon.type.ToxicGasSpray;
+import weapon.type.ToxicGasSprayView;
 
 
 public class Main {
@@ -17,14 +20,14 @@ public class Main {
             @Override
             public void run() {                                           
             	JFrame jf = new JFrame("aaaa");
-            	Weapon we = new Hammer();
-            	WeaponView vi = new WeaponView(jf, "b.png");
-            	jf.setCursor(vi.getCursor());
+            	jf.setLayout(new BorderLayout());
+            	Weapon we = new ToxicGasSpray();
+            	WeaponView vi = new ToxicGasSprayView();
+            	jf.add(vi, BorderLayout.CENTER);
             	WeaponController co = new WeaponController(we, vi);
-            	jf.addMouseListener(co.getListener());
-        		jf.setSize(300, 300);
-        		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        		jf.setVisible(true);
+        		  jf.setSize(300, 300);
+        		  jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        		  jf.setVisible(true);
             }
         });
 	}
