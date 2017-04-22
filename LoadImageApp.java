@@ -42,27 +42,31 @@ import javax.swing.*;
  */
 public class LoadImageApp extends Component {
           
-    BufferedImage img;
+    static Image img;
+    static int abs;
+    static int ord;
 
     public void paint(Graphics g) {
+		
         g.drawImage(img, 0, 0, null);
     }
 
-    public LoadImageApp() {
+    public LoadImageApp(String namaFile) {
        try {
-           img = ImageIO.read(new File("strawberry.jpg"));
+           img = ImageIO.read(new File(namaFile));
+           img = img.getScaledInstance(20,20,1);
        } catch (IOException e) {
        }
-
+		
     }
 
-    public Dimension getPreferredSize() {
+    /*public Dimension getPreferredSize() {
         if (img == null) {
              return new Dimension(100,100);
         } else {
            return new Dimension(img.getWidth(null), img.getHeight(null));
        }
-    }
+    }*/
 
     public static void main(String[] args) {
 
@@ -73,9 +77,20 @@ public class LoadImageApp extends Component {
                     System.exit(0);
                 }
             });
-
-        f.add(new LoadImageApp());
-        f.pack();
+        LoadImageApp ia = new LoadImageApp("hamster-01.png");
+		f.addMouseMotionListener(new MouseMotionListener() {
+			public void mouseMoved(MouseEvent e) {
+				abs = e.getX();
+				ord = e.getY();
+				//f.add(new LoadImageApp());
+				ia.setLocation(abs-10, ord-10);
+				//ia.setSize(1000,1000);
+			}
+			public void mouseDragged(MouseEvent e) {}
+		});
+		
+        f.add(ia);
+        f.setSize(400,400);
         f.setVisible(true);
     }
 }
