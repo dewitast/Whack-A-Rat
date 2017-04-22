@@ -1,8 +1,6 @@
 package weapon;
 
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class WeaponController {
@@ -27,11 +25,11 @@ public class WeaponController {
       public void mouseDragged(MouseEvent mouse) {
       }
     };
-    view.getPanel().addMouseMotionListener(al);
+    view.addMouseMotionListener(al);
   }
   
   public void move(int abs, int ord) {
-	  
+    weapon.setPosition(abs, ord);
+    view.setLocation(abs, ord);
   }
-  
 }

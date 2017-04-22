@@ -48,7 +48,7 @@ public abstract class Weapon {
 
   /**
    * Mengatur kekuatan senjata.
-   * @param kekuatan senjata.
+   * @param pow kekuatan senjata.
    */
   public void setPower(int pow) {
   	power = pow;
@@ -56,10 +56,20 @@ public abstract class Weapon {
 
   /**
    * Mengatur posisi senjata.
-   * @param posisi senjata.
+   * @param pos posisi senjata.
    */
   public void setPosition(Point pos) {
   	position.setAbsis(pos.getAbsis());
   	position.setOrdinat(pos.getOrdinat());
+  }
+  
+  /**
+   * Mengatur posisi senjata.
+   * @param abs nilai absis posisi senjata.
+   * @param ord nilai ordinat posisi senjata.
+   */
+  public void setPosition(int abs, int ord) {
+    position.setAbsis(abs);
+    position.setOrdinat(ord);
   }
 }
