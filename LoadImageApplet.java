@@ -28,7 +28,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
-package weapon;
+
 
 import java.awt.*;
 import java.awt.event.*;
@@ -40,34 +40,30 @@ import javax.swing.*;
 /**
  * This class demonstrates how to load an Image from an external file
  */
-public class WeaponView extends Component {
+public class LoadImageApp extends Component {
           
-    static Image img;
-    static int abs;
-    static int ord;
+    BufferedImage img;
 
     public void paint(Graphics g) {
-		
         g.drawImage(img, 0, 0, null);
     }
 
-    public WeaponView(String namaFile) {
+    public LoadImageApp() {
        try {
-           img = ImageIO.read(new File(namaFile));
-           img = img.getScaledInstance(20,20,1);
+           img = ImageIO.read(new File("strawberry.jpg"));
        } catch (IOException e) {
        }
-		
+
     }
 
-    /*public Dimension getPreferredSize() {
+    public Dimension getPreferredSize() {
         if (img == null) {
              return new Dimension(100,100);
         } else {
            return new Dimension(img.getWidth(null), img.getHeight(null));
        }
-    }*/
-/*
+    }
+
     public static void main(String[] args) {
 
         JFrame f = new JFrame("Load Image Sample");
@@ -77,20 +73,9 @@ public class WeaponView extends Component {
                     System.exit(0);
                 }
             });
-        WeaponView ia = new WeaponView("hamster-01.png");
-		f.addMouseMotionListener(new MouseMotionListener() {
-			public void mouseMoved(MouseEvent e) {
-				abs = e.getX();
-				ord = e.getY();
-				//f.add(new WeaponView());
-				ia.setLocation(abs-10, ord-10);
-				//ia.setSize(1000,1000);
-			}
-			public void mouseDragged(MouseEvent e) {}
-		});
-		
-        f.add(ia);
-        f.setSize(400,400);
+
+        f.add(new LoadImageApp());
+        f.pack();
         f.setVisible(true);
-    }*/
+    }
 }
