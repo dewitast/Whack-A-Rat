@@ -18,9 +18,10 @@ public class Main {
             public void run() {                                           
             	JFrame jf = new JFrame("aaaa");
             	Weapon we = new Hammer();
-            	WeaponView vi = new WeaponView("b.png");
-            	jf.add(vi);
+            	WeaponView vi = new WeaponView(jf, "b.png");
+            	jf.setCursor(vi.getCursor());
             	WeaponController co = new WeaponController(we, vi);
+            	jf.addMouseListener(co.getListener());
         		jf.setSize(300, 300);
         		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         		jf.setVisible(true);

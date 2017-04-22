@@ -1,96 +1,57 @@
-/*
- * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of Oracle or the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
-package weapon;
+ package weapon;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
-import javax.swing.*;
+import javax.swing.JFrame;
 
 /**
  * This class demonstrates how to load an Image from an external file
  */
-public class WeaponView extends Component {
-          
-    static Image img;
-    static int abs;
-    static int ord;
-
-    public void paint(Graphics g) {
-		
-        g.drawImage(img, 0, 0, null);
-    }
-
-    public WeaponView(String namaFile) {
-       try {
-           img = ImageIO.read(new File(namaFile));
-           img = img.getScaledInstance(20,20,1);
-       } catch (IOException e) {
-       }
-		
-    }
-
-    /*public Dimension getPreferredSize() {
-        if (img == null) {
-             return new Dimension(100,100);
-        } else {
-           return new Dimension(img.getWidth(null), img.getHeight(null));
-       }
-    }*/
-/*
-    public static void main(String[] args) {
-
-        JFrame f = new JFrame("Load Image Sample");
-            
-        f.addWindowListener(new WindowAdapter(){
-                public void windowClosing(WindowEvent e) {
-                    System.exit(0);
-                }
-            });
-        WeaponView ia = new WeaponView("hamster-01.png");
-		f.addMouseMotionListener(new MouseMotionListener() {
-			public void mouseMoved(MouseEvent e) {
-				abs = e.getX();
-				ord = e.getY();
-				//f.add(new WeaponView());
-				ia.setLocation(abs-10, ord-10);
-				//ia.setSize(1000,1000);
-			}
-			public void mouseDragged(MouseEvent e) {}
-		});
-		
-        f.add(ia);
-        f.setSize(400,400);
-        f.setVisible(true);
-    }*/
+public class WeaponView {
+  JFrame jf;
+  private BufferedImage img;
+  
+  /*
+   * Konstruktor dengan parameter.
+   * @param namaFile string yang berisi nama file.
+   */
+  public WeaponView(JFrame jfr, String namaFile) {
+	jf = jfr;
+	try {
+	  img = ImageIO.read(new File(namaFile));
+	} catch(IOException ex) {
+	}
+  }
+  
+  public Cursor getCursor() {
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	Image im = img.getScaledInstance(64, 64, 1); 
+	img = new BufferedImage(im.getWidth(null), im.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+	Graphics2D gr = img.createGraphics();
+	gr.drawImage(im, 0, 0, null);
+	gr.dispose();
+	Point hotspot = new Point(0, 0);
+	Cursor cursor = tk.createCustomCursor((Image)img, hotspot, "palu");
+	return cursor;
+  }
+  
+  public void rotate(double angle) {
+    double sin = Math.abs(Math.sin(angle));
+    double cos = Math.abs(Math.cos(angle));
+    int width = img.getWidth();
+    int height = img.getHeight();
+    int newwidth = (int)Math.floor(width * cos + height * sin);
+    int newheight = (int)Math.floor(height * cos + width * sin);
+    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice gd = ge.getDefaultScreenDevice();
+    GraphicsConfiguration gc = gd.getDefaultConfiguration();
+    img = gc.createCompatibleImage(newwidth, newheight, Transparency.TRANSLUCENT);
+    Graphics2D gr = img.createGraphics();
+    gr.translate((newwidth - width) / 2, (newheight - height) / 2);
+    gr.rotate(angle, width / 2, height / 2);
+    gr.drawRenderedImage(img, null);
+    jf.setCursor(getCursor());
+  }
 }
