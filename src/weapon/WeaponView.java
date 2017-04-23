@@ -30,6 +30,7 @@ public class WeaponView extends JPanel {
 	    resetCursor();
 	  } catch(IOException ex) {
 	  }
+	  setOpaque(false);
   }
   
   /*

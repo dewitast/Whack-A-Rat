@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import frame.GameFrame;
+
 import weapon.Weapon;
 import weapon.WeaponController;
 import weapon.WeaponView;
@@ -19,15 +21,12 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {                                           
-            	JFrame jf = new JFrame("aaaa");
+            	JFrame jf = new GameFrame();
             	jf.setLayout(new BorderLayout());
             	Weapon we = new ToxicGasSpray();
             	WeaponView vi = new ToxicGasSprayView();
             	jf.add(vi, BorderLayout.CENTER);
             	WeaponController co = new WeaponController(we, vi);
-        		  jf.setSize(300, 300);
-        		  jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        		  jf.setVisible(true);
             }
         });
 	}
