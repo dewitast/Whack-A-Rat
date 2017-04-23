@@ -20,7 +20,7 @@ public class GameFrame extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setVisible(true);
     setLayout(new BorderLayout());
-    setContentPane(new JLabel(new ImageIcon("grass2.jpeg")));
+    setContentPane(new JLabel(new ImageIcon("img/grass2.jpeg")));
     setLayout(new FlowLayout());
   }
 }

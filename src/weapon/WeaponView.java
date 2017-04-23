@@ -10,8 +10,6 @@ import javax.swing.JPanel;
  */
 public class WeaponView extends JPanel {
   private static final long serialVersionUID = 3660825063037349659L;
-  private final String image;
-  private final String imageclicked;
   private Image imgclicked;
   private Image img;
   
@@ -20,13 +18,11 @@ public class WeaponView extends JPanel {
    * @param namaFile string yang berisi nama file.
    */
   public WeaponView(String file, String fileClicked) {
-    image = file;
-    imageclicked = fileClicked;
 	  try {
-	    img = ImageIO.read(new File(image));
-	    //img = img.getScaledInstance(64, 64, 1);
-	    imgclicked = ImageIO.read(new File(imageclicked));
-	    //imgclicked = imgclicked.getScaledInstance(64, 64, 1);
+	    img = ImageIO.read(new File(file));
+	    img = img.getScaledInstance(64, 64, 1);
+	    imgclicked = ImageIO.read(new File(fileClicked));
+	    imgclicked = imgclicked.getScaledInstance(64, 64, 1);
 	    resetCursor();
 	  } catch(IOException ex) {
 	  }
