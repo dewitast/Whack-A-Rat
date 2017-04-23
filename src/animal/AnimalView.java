@@ -15,7 +15,7 @@ public class AnimalView extends JPanel{
   private Image showedImage;
   private Image image1;
   private Image image2;
-  private int size = 100;
+  private int size = 50;
   
   /*
    * Konstruktor dengan parameter.
@@ -31,7 +31,12 @@ public class AnimalView extends JPanel{
     
     }
     setSize(size,size);
-    showedImage = image1;
+    try {
+    showedImage = ImageIO.read(new File("img/hammer1.png"));
+    showedImage = showedImage.getScaledInstance(size,size,1);
+    } catch (IOException ex) {
+      
+    }
     setOpaque(false);
   }
   
@@ -52,7 +57,7 @@ public class AnimalView extends JPanel{
     return image2;
   }
   public void paint(Graphics g) {
-    g.drawImage(showedImage, 0, 0, null);
+    g.drawImage(showedImage, 50, 50, null);
   }
   public void setShowedImage(int time) {
     if (time%2==0) {
