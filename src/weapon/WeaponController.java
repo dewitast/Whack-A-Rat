@@ -4,6 +4,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
+ *  Nama file  : WeaponController.java
+ */
 public class WeaponController {
   private Weapon weapon;
   private WeaponView view;
@@ -14,6 +18,8 @@ public class WeaponController {
    * @param vi Objek view.
    */
   public WeaponController(Weapon we, WeaponView vi) {
+    assert(we != null);
+    assert(vi != null);
     weapon = we;
     view = vi;
     MouseListener ml = new MouseListener() {
@@ -46,10 +52,14 @@ public class WeaponController {
   
   /*
    * Menggerakkan model senjata ke posisi tertentu.
+   * I.S. abs < 0 dan ord < 0
+   * F.S senjata bergerak ke posisi tersebut.
    * @param nilai absis lokasi senjata bergerak.
    * @param nilai ordinat lokasi senjata bergerak.
    */
   public void move(int abs, int ord) {
+    assert(abs >= 0);
+    assert(ord >= 0);
     weapon.setPosition(abs, ord);
   }
 }
