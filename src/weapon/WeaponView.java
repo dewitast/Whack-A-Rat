@@ -6,7 +6,8 @@ import javax.imageio.*;
 import javax.swing.JPanel;
 
 /**
- * This class demonstrates how to load an Image from an external file
+ * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
+ *  Nama file  : WeaponView.java
  */
 public class WeaponView extends JPanel {
   private static final long serialVersionUID = 3660825063037349659L;
@@ -15,7 +16,8 @@ public class WeaponView extends JPanel {
   
   /*
    * Konstruktor dengan parameter.
-   * @param namaFile string yang berisi nama file.
+   * @param file string yang berisi nama file.
+   * @param fileClicked string yang berisi nama file ketika diklik.
    */
   public WeaponView(String file, String fileClicked) {
 	  try {
