@@ -1,25 +1,51 @@
+/**
+ * 
+ */
 package score;
 
+import java.awt.event.ActionListener;
+
+/**
+ * @author suzaneringoringo
+ *
+ */
 public class ScoreController {
-  private ScoreView view;
-  private int score;
-  
-  /*
-   * Konstruktor.
+  /**
+   * Score (model) yang dikendalikan
    */
-  public ScoreController(ScoreView vi) {
-    view = vi;
-    score = 0;
+  private Score myScore;
+  /**
+   * ScoreView (view) yang dikendalikan
+   */
+  private ScoreView myScoreView;
+  /**
+   * Penerima aksi
+   */
+  private ActionListener actionListener;
+  
+  /**
+   * Konstruktor
+   * @param parScore model yang dikendalikan
+   * @param parScoreView view yang dikendalikan
+   */
+  public ScoreController(Score parScore, ScoreView parScoreView) {
+    myScore = parScore;
+    myScoreView = parScoreView;
   }
   
-  /*
-   * Menambah nilai sebanyak skor.
-   * @param skor nilai perubahan skor.
-   * I.S. sembarang.
-   * F.S. skor berubah sesuai masukan.
+  /**
+   * Prosedur kontrol
    */
-  public void addScore(int skor) {
-    score += skor;
-    view.setScore(score);
+  public void control() {
+    
+  }
+  
+  /**
+   * Menambah nilai skor pada model
+   * @param parScore penambah nilai skor pada model
+   */
+  public void increaseScoreBy(int parScore) {
+    myScore.increaseScoreBy(parScore);
+    myScoreView.setScore(myScore.getScore());
   }
 }
