@@ -4,24 +4,21 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
 
 public class GameFrame extends JFrame implements Runnable {
   private static final long serialVersionUID = 4153332469558642589L;
@@ -57,22 +54,26 @@ public class GameFrame extends JFrame implements Runnable {
     mainPanel.setLayout(new GridBagLayout());
     mainPanel.setOpaque(false);
     
-    JLabel header = initHeader("img/whack a rat1.png");
     String[] url = {"img/whack a rat1.png","img/whack a rat2.png","img/whack a rat3.png"};
+    try {
+      TimerImageSwapper tHeader = new TimerImageSwapper(url,600);
     
-    JPanel control = initControl();
-    JPanel weapon = initWeapon();
-    
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    mainPanel.add(header,gbc);
-    gbc.gridx = 0;
-    gbc.gridy = 1;
-    mainPanel.add(control,gbc);
-    gbc.gridx = 0;
-    gbc.gridy = 2;
-    mainPanel.add(weapon,gbc);
+      JPanel control = initControl();
+      JPanel weapon = initWeapon();
+      
+      GridBagConstraints gbc = new GridBagConstraints();
+      gbc.gridx = 0;
+      gbc.gridy = 0;
+      mainPanel.add(tHeader,gbc);
+      gbc.gridx = 0;
+      gbc.gridy = 1;
+      mainPanel.add(control,gbc);
+      gbc.gridx = 0;
+      gbc.gridy = 2;
+      mainPanel.add(weapon,gbc);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
   
   public JLabel getBackLabel() {
@@ -93,12 +94,6 @@ public class GameFrame extends JFrame implements Runnable {
       }
     });
     return back;
-  }
-  
-  public JLabel initHeader(String namaFile) {
-    JLabel header = new JLabel();
-    header.setIcon(new ImageIcon(namaFile));
-    return header;
   }
   
   public JPanel initControl() {
@@ -205,15 +200,21 @@ public class GameFrame extends JFrame implements Runnable {
     highScorePanel.setLayout(new BoxLayout(highScorePanel,BoxLayout.Y_AXIS));
     highScorePanel.setOpaque(false);
     
-    JLabel header = initHeader("img/highscore1.png");
-    highScorePanel.add(header);
-    highScorePanel.add(getBackLabel());
-    highScorePanel.setVisible(false);
-    for (int i = 0; i < highScorePanel.getComponents().length; ++i) {
-      if (highScorePanel.getComponent(i) instanceof JLabel) {
-        JLabel label = (JLabel)highScorePanel.getComponent(i);
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    String[] url = {"img/highscore1.png","img/highscore2.png"};
+    try {
+      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
+    
+      highScorePanel.add(tHeader);
+      highScorePanel.add(getBackLabel());
+      highScorePanel.setVisible(false);
+      for (int i = 0; i < highScorePanel.getComponents().length; ++i) {
+        if (highScorePanel.getComponent(i) instanceof JLabel) {
+          JLabel label = (JLabel)highScorePanel.getComponent(i);
+          label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
   
@@ -222,89 +223,106 @@ public class GameFrame extends JFrame implements Runnable {
     helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
     helpPanel.setOpaque(false);
     
-    JLabel header = initHeader("img/help1.png");
+    String[] url = {"img/help1.png","img/help2.png", "img/help3.png"};
+    try {
+      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
     
-    JPanel subPanel = new JPanel(new GridLayout(3,4));
-    subPanel.setOpaque(false);
-    
-    JLabel tikus = new JLabel(new ImageIcon(new ImageIcon("img/tikuskanan1.png").getImage().getScaledInstance(150,50,1)));
-    JLabel ayam = new JLabel(new ImageIcon (new ImageIcon("img/bebekkanan1.png").getImage().getScaledInstance(70,120,1)));
-    JLabel kecoa = new JLabel(new ImageIcon(new ImageIcon("img/kecoakanan1.png").getImage().getScaledInstance(100,100,1)));
-    JLabel hamster = new JLabel(new ImageIcon(new ImageIcon("img/hamsterkanan1.png").getImage().getScaledInstance(100,80,1)));
-    JLabel palu = new JLabel(new ImageIcon(new ImageIcon("img/hammer2.png").getImage().getScaledInstance(80,80,1)));;
-    JLabel gas = new JLabel(new ImageIcon(new ImageIcon("img/spray2.png").getImage().getScaledInstance(80,80,1)));;
-    
-    JTextArea descTikus = new JTextArea("Tikus got yang hidup dibawah kerlap-kerlip kota metropolitan");
-    JTextArea descAyam = new JTextArea("Ayam jangan dibunuh. Dia masih belum mengerti arti kehidupan");
-    JTextArea descKecoa = new JTextArea("Kecoa yang menggelikan. Cepat basmi sebelum beranak pinak!");
-    JTextArea descHamster = new JTextArea("Hamster yang polos dan imut suka tidur dimana saja. Apakah yang ia senangi? Biji bunga matahari");
-    JTextArea descPalu = new JTextArea("Palu andalan yang handal dan bisa diandalkan digunakan oleh orang-orang andal");
-    JTextArea descGas = new JTextArea("Gas beracun yang sangat ampuh membunuh makhluk hidup apapun");
-    
-    subPanel.add(tikus);
-    subPanel.add(descTikus);
-    subPanel.add(ayam);
-    subPanel.add(descAyam);
-    subPanel.add(kecoa);
-    subPanel.add(descKecoa);
-    subPanel.add(hamster);
-    subPanel.add(descHamster);
-    subPanel.add(palu);
-    subPanel.add(descPalu);
-    subPanel.add(gas);
-    subPanel.add(descGas);
-    
-    helpPanel.add(header);
-    helpPanel.add(subPanel);
-    helpPanel.add(getBackLabel());
-    
-    for (int i = 0; i < helpPanel.getComponents().length; ++i) {
-      if (helpPanel.getComponent(i) instanceof JLabel) {
-        JLabel label = (JLabel)helpPanel.getComponent(i);
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        label.setOpaque(false);
+      JPanel subPanel = new JPanel(new GridLayout(3,4));
+      subPanel.setOpaque(false);
+      
+      String[] url1 = {"img/tikuskanan1.png", "img/tikuskanan2.png"};
+      TimerImageSwapper tikus = new TimerImageSwapper(url1,300,150,50);
+      String[] url2 = {"img/bebekkanan1.png", "img/bebekkanan2.png"};
+      TimerImageSwapper ayam = new TimerImageSwapper(url2,300,70,120);
+      String[] url3 = {"img/kecoakanan1.png", "img/kecoakanan2.png"};
+      TimerImageSwapper kecoa = new TimerImageSwapper(url3,300,100,100);
+      String[] url4 = {"img/hamsterkanan1.png", "img/hamsterkanan2.png"};
+      TimerImageSwapper hamster = new TimerImageSwapper(url4,300,100,80);
+      String[] url5 = {"img/hammer1.png", "img/hammer2.png"};
+      TimerImageSwapper palu = new TimerImageSwapper(url5,300,80,80);
+      String[] url6 = {"img/spray1.png","img/spray2.png"};
+      TimerImageSwapper gas = new TimerImageSwapper(url6,300,80,80);
+      
+      JTextArea descTikus = new JTextArea("Tikus got yang hidup dibawah kerlap-kerlip kota metropolitan");
+      JTextArea descAyam = new JTextArea("Ayam jangan dibunuh. Dia masih belum mengerti arti kehidupan");
+      JTextArea descKecoa = new JTextArea("Kecoa yang menggelikan. Cepat basmi sebelum beranak pinak!");
+      JTextArea descHamster = new JTextArea("Hamster yang polos dan imut suka tidur dimana saja. Apakah yang ia senangi? Biji bunga matahari");
+      JTextArea descPalu = new JTextArea("Palu andalan yang handal dan bisa diandalkan digunakan oleh orang-orang andal");
+      JTextArea descGas = new JTextArea("Gas beracun yang sangat ampuh membunuh makhluk hidup apapun");
+      
+      subPanel.add(tikus);
+      subPanel.add(descTikus);
+      subPanel.add(ayam);
+      subPanel.add(descAyam);
+      subPanel.add(kecoa);
+      subPanel.add(descKecoa);
+      subPanel.add(hamster);
+      subPanel.add(descHamster);
+      subPanel.add(palu);
+      subPanel.add(descPalu);
+      subPanel.add(gas);
+      subPanel.add(descGas);
+      
+      helpPanel.add(tHeader);
+      helpPanel.add(subPanel);
+      helpPanel.add(getBackLabel());
+      
+      for (int i = 0; i < helpPanel.getComponents().length; ++i) {
+        if (helpPanel.getComponent(i) instanceof JLabel) {
+          JLabel label = (JLabel)helpPanel.getComponent(i);
+          label.setAlignmentX(Component.CENTER_ALIGNMENT);
+          label.setOpaque(false);
+        }
+      }    
+      
+      for (int i = 0; i < subPanel.getComponents().length; ++i) {
+        if (subPanel.getComponent(i) instanceof JTextArea) {
+          JTextArea text = (JTextArea)subPanel.getComponent(i);
+          text.setForeground(Color.black);
+          Font font = new Font(Font.SANS_SERIF, Font.BOLD, 14);
+          text.setFont(font);
+          text.setLineWrap(true);
+          text.setOpaque(false);
+        }
       }
-    }    
-    
-    for (int i = 0; i < subPanel.getComponents().length; ++i) {
-      if (subPanel.getComponent(i) instanceof JTextArea) {
-        JTextArea text = (JTextArea)subPanel.getComponent(i);
-        text.setForeground(Color.orange);
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 14);
-        text.setFont(font);
-        text.setLineWrap(true);
-        text.setOpaque(false);
-      }
+      helpPanel.setVisible(false);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
-    helpPanel.setVisible(false);
   }
   public void initCreditsPanel() {
     creditsPanel = new JPanel(new GridLayout(6, 1));
     creditsPanel.setOpaque(false);
     
-    JLabel header = initHeader("img/credits1.png");
-    JLabel dewita = new JLabel("Dewita Sonya Tarabunga - 13515021");
-    JLabel helena = new JLabel("Helena Suzane Graciella - 13515032");
-    JLabel audry = new JLabel("Audry Nyonata - 13515087");
-    JLabel william = new JLabel("William - 13515144");
+    String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};
+    try {
+      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
     
-    creditsPanel.add(header);
-    creditsPanel.add(dewita);
-    creditsPanel.add(helena);
-    creditsPanel.add(audry);
-    creditsPanel.add(william);
-    creditsPanel.add(getBackLabel());
-    
-    for (int i = 0; i < creditsPanel.getComponents().length; ++i) {
-      if (creditsPanel.getComponent(i) instanceof JLabel) {
-        JLabel label = (JLabel)creditsPanel.getComponent(i);
-        label.setForeground(Color.orange);
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 22);
-        label.setFont(font);
-        label.setHorizontalAlignment(JLabel.CENTER);
+      JLabel dewita = new JLabel("Dewita Sonya Tarabunga - 13515021");
+      JLabel helena = new JLabel("Helena Suzane Graciella - 13515032");
+      JLabel audry = new JLabel("Audry Nyonata - 13515087");
+      JLabel william = new JLabel("William - 13515144");
+      
+      creditsPanel.add(tHeader);
+      creditsPanel.add(dewita);
+      creditsPanel.add(helena);
+      creditsPanel.add(audry);
+      creditsPanel.add(william);
+      creditsPanel.add(getBackLabel());
+      
+      for (int i = 0; i < creditsPanel.getComponents().length; ++i) {
+        if (creditsPanel.getComponent(i) instanceof JLabel) {
+          JLabel label = (JLabel)creditsPanel.getComponent(i);
+          label.setForeground(Color.orange);
+          Font font = new Font(Font.SANS_SERIF, Font.BOLD, 22);
+          label.setFont(font);
+          label.setHorizontalAlignment(JLabel.CENTER);
+        }
       }
+      creditsPanel.setVisible(false);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
-    creditsPanel.setVisible(false);
   }
   
    
