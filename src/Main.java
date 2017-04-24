@@ -1,8 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -35,11 +40,15 @@ public class Main {
             	jf.pack();
             	WeaponController co = new WeaponController(we, vi);
             	Hamster ha1 = new Hamster();
-            	AnimalView avi1 = new HamsterView();
+            	final AnimalView avi1 = new HamsterView();
             	AnimalController aco1 = new AnimalController(ha1, avi1);
-            	jf.add(avi1, BorderLayout.CENTER);
+            	vi.add(avi1, BorderLayout.CENTER);
             	jf.pack();
             	jf.setVisible(true);
+            	final JLabel jl = new HamsterView();
+            	vi.add(jl);
+            	jl.setOpaque(true);
+            	avi1.setOpaque(true);
             	
             }
         });
