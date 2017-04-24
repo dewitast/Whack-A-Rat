@@ -43,8 +43,8 @@ public class ToxicGasSprayTest {
    */
   @Test
   public void testGetPosition() {
-    assertEquals("Constructor: Position Error!", 0, h.getPosition().getAbsis());
-    assertEquals("Constructor: Position Error!", 0, h.getPosition().getOrdinat());
+    assertEquals("Position Error!", 0, h.getPosition().getAbsis());
+    assertEquals("Position Error!", 0, h.getPosition().getOrdinat());
   }
 
   /**
@@ -52,7 +52,7 @@ public class ToxicGasSprayTest {
    */
   @Test
   public void testGetPower() {
-    assertEquals("Constructor: Power Error!", 0, h.getPower());
+    assertEquals("Power Error!", 0, h.getPower());
   }
 
   /**
@@ -61,7 +61,7 @@ public class ToxicGasSprayTest {
   @Test
   public void testSetPower() {
     h.setPower(2);
-    assertEquals("Constructor: Power Error!", 2, h.getPower());
+    assertEquals("Power Error!", 2, h.getPower());
   }
 
   /**
@@ -71,8 +71,8 @@ public class ToxicGasSprayTest {
   public void testSetPositionPoint() {
     Point p = new Point(3,3);
     h.setPosition(p);
-    assertEquals("Constructor: Position Error!", 3, h.getPosition().getAbsis());
-    assertEquals("Constructor: Position Error!", 3, h.getPosition().getOrdinat());
+    assertEquals("Position Error!", 3, h.getPosition().getAbsis());
+    assertEquals("Position Error!", 3, h.getPosition().getOrdinat());
   }
 
   /**
@@ -81,8 +81,8 @@ public class ToxicGasSprayTest {
   @Test
   public void testSetPositionIntInt() {
     h.setPosition(2,2);
-    assertEquals("Constructor: Position Error!", 2, h.getPosition().getAbsis());
-    assertEquals("Constructor: Position Error!", 2, h.getPosition().getOrdinat());
+    assertEquals("Position Error!", 2, h.getPosition().getAbsis());
+    assertEquals("Position Error!", 2, h.getPosition().getOrdinat());
   }
 
 }
