@@ -1,4 +1,4 @@
-/**
+  /**
  * 
  */
 package score.test;
@@ -20,7 +20,7 @@ public class ScoreTest {
    */
   @Test
   public void testScore() {
-    assertEquals("Constructor: Score Error!", 0, s.getScore());
+    assertEquals("Score Error!", 0, s.getScore());
   }
 
   /**
@@ -29,7 +29,7 @@ public class ScoreTest {
   @Test
   public void testScoreInt() {
     s = new Score(3);
-    assertEquals("Constructor: Score Error!", 3, s.getScore());
+    assertEquals("Score Error!", 3, s.getScore());
   }
 
   /**
@@ -38,7 +38,7 @@ public class ScoreTest {
   @Test
   public void testSetScore() {
     s.setScore(3);
-    assertEquals("Constructor: Score Error!", 3, s.getScore());
+    assertEquals("Score Error!", 3, s.getScore());
   }
 
   /**
@@ -47,7 +47,7 @@ public class ScoreTest {
   @Test
   public void testIncreaseScoreBy() {
     s.increaseScoreBy(2);
-    assertEquals("Constructor: Score Error!", 2, s.getScore());
+    assertEquals("Score Error!", 2, s.getScore());
   }
 
   /**
@@ -55,7 +55,7 @@ public class ScoreTest {
    */
   @Test
   public void testGetScore() {
-    assertEquals("Constructor: Score Error!", 0, s.getScore());
+    assertEquals("Score Error!", 0, s.getScore());
   }
 
 }
