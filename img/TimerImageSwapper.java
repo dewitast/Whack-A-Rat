@@ -9,28 +9,26 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class TimerImageSwapper {
-  public static final String[] IMAGE_URLS = {
+public class TimerImageSwapper extends JLabel{
+  /*public static final String[] IMAGE_URLS = {
     "img/whack a rat1.png",
     "img/whack a rat2.png",
     "img/whack a rat3.png"
   };
 
-  private static final int TIMER_DELAY = 1000;
-
-  private ImageIcon[] icons = new ImageIcon[IMAGE_URLS.length];
+  private static final int TIMER_DELAY = 500;
+	
   private JLabel mainLabel = new JLabel();
-
+  */
   private int iconIndex = 0;;
 
-  public TimerImageSwapper() throws IOException {
-    for (int i = 0; i < icons.length; i++) {
-      String imgUrl = new String(IMAGE_URLS[i]);
-      BufferedImage image = ImageIO.read(new File(imgUrl));
-      icons[i] = new ImageIcon(image);
+  public TimerImageSwapper(String[] url, int delay) throws IOException {
+	  ImageIcon[] icons = new ImageIcon[url.length];
+	  for (int i = 0; i < icons.length; i++) {
+	      icons[i] = new ImageIcon(url[i]);
     }
 
-    mainLabel.setIcon(icons[iconIndex ]);
+    setIcon(icons[iconIndex ]);
 
     new Timer(TIMER_DELAY, new ActionListener() {
 
@@ -38,38 +36,8 @@ public class TimerImageSwapper {
       public void actionPerformed(ActionEvent arg0) {
         iconIndex++;
         iconIndex %= IMAGE_URLS.length;
-        mainLabel.setIcon(icons[iconIndex]);
+        setIcon(icons[iconIndex]);
       }
     }).start();
-  }
-
-  public Component getMainComponent() {
-    return mainLabel;
-  }
-
-  private static void createAndShowGui() {
-    TimerImageSwapper timerImageSwapper;
-    try {
-      timerImageSwapper = new TimerImageSwapper();
-      JFrame frame = new JFrame("Timer Image Swapper");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.getContentPane().add(timerImageSwapper.getMainComponent());
-      frame.pack();
-      frame.setLocationByPlatform(true);
-      frame.setVisible(true);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-      System.exit(-1);
-    }
-
-  }
-
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        createAndShowGui();
-      }
-    });
   }
 }
