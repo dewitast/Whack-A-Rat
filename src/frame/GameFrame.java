@@ -128,6 +128,8 @@ public class GameFrame extends JFrame {
         } else {
           gamePanel = new GamePanel(new ToxicGasSprayView());
         }
+        setLayout(new BorderLayout());
+        add(gamePanel);
         gamePanel.setVisible(true);
       }
       public void mouseExited(MouseEvent mo) {
