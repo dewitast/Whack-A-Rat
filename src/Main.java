@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import animal.AnimalController;
 import animal.AnimalView;
@@ -35,7 +38,7 @@ public class Main {
             	GameFrame jf = new GameFrame();
             	jf.setLayout(new BorderLayout());
             	Weapon we = new ToxicGasSpray();
-            	WeaponView vi = new ToxicGasSprayView();
+            	final WeaponView vi = new ToxicGasSprayView();
             	jf.add(vi, BorderLayout.CENTER);
             	jf.pack();
             	WeaponController co = new WeaponController(we, vi);
@@ -47,9 +50,16 @@ public class Main {
             	jf.setVisible(true);
             	final JLabel jl = new HamsterView();
             	vi.add(jl);
-            	jl.setOpaque(true);
-            	avi1.setOpaque(true);
-            	
+            	Timer productionTimer = new Timer(3000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                  Hamster ha = new Hamster();
+                  final AnimalView avi = new HamsterView();
+                  AnimalController aco = new AnimalController(ha, avi);
+                  vi.add(avi, BorderLayout.CENTER);
+                  }
+              });
+            	productionTimer.start();
             }
         });
 	}

@@ -14,7 +14,8 @@ public class AnimalController {
   private static int num=1;
   private Animal animal;
   private AnimalView view;
-  private Timer timer1;
+  private Timer moveTimer;
+  private Timer dissapearTimer;
   
   /*
    * Konstruktor dengan parameter.
@@ -27,24 +28,30 @@ public class AnimalController {
     final Random rand = new Random();
 
     MouseAdapter ml = new MouseAdapter() {
-      public void mousePressed(MouseEvent mo) {
+      public void mouseClicked(MouseEvent mo) {
         view.getShowedImage().setImage(view.getImage1());
-        view.setIcon(view.getShowedImage());
-        timer1.stop();
+        view.setVisible(false);
+        moveTimer.stop();
       }
     };
     view.addMouseListener(ml);
-    timer1 = new Timer(2, new ActionListener() {
+    moveTimer = new Timer(animal.getSpeed(), new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        
         view.setLocation((int)view.getLocation().getX()+(rand.nextInt(7)-3),(int)view.getLocation().getY()+(rand.nextInt(7)-3));
         view.setShowedImage(num);
         num++;
         }
     });
-    timer1.start();
-  }
-  
-  
+    moveTimer.start();
+    dissapearTimer = new Timer(5000, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        moveTimer.stop();
+        view.setVisible(false);
+        }
+    });
+    dissapearTimer.setRepeats(false);
+    dissapearTimer.start();
+    }
 }
