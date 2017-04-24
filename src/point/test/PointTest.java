@@ -41,7 +41,7 @@ public class PointTest {
   @Test
   public void testSetAbsis() {
     p.setAbsis(1);
-    assertEquals("Constructor: Absis Error!", 1, p.getAbsis());
+    assertEquals("Absis Error!", 1, p.getAbsis());
   }
 
   /**
@@ -49,7 +49,7 @@ public class PointTest {
    */
   @Test
   public void testGetAbsis() {
-    assertEquals("Constructor: Absis Error!", 0, p.getAbsis());
+    assertEquals("Absis Error!", 0, p.getAbsis());
   }
 
   /**
@@ -58,7 +58,7 @@ public class PointTest {
   @Test
   public void testSetOrdinat() {
     p.setOrdinat(1);
-    assertEquals("Constructor: Ordinat Error!", 1, p.getOrdinat());
+    assertEquals("Ordinat Error!", 1, p.getOrdinat());
   }
 
   /**
@@ -66,7 +66,7 @@ public class PointTest {
    */
   @Test
   public void testGetOrdinat() {
-    assertEquals("Constructor: Ordinat Error!", 0, p.getOrdinat());
+    assertEquals("Ordinat Error!", 0, p.getOrdinat());
   }
 
 }
