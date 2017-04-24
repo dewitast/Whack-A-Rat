@@ -24,14 +24,14 @@ import weapon.WeaponView;
 
 import weapon.type.HammerView;
 import weapon.type.ToxicGasSprayView;
-
+import score.HighScoreController;
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
   private JPanel creditsPanel;
   private JPanel helpPanel;
-  private JPanel highScorePanel;
   private GamePanel gamePanel;
+  private HighScoreController highScoreController;
   private String selectedWeapon;
 
   /*
@@ -39,7 +39,6 @@ public class GameFrame extends JFrame {
    */
   public GameFrame() {
     initMainPanel();
-    initHighScorePanel();
     initHelpPanel();
     initCreditsPanel();
     setTitle("Whack A Rat");
@@ -48,7 +47,8 @@ public class GameFrame extends JFrame {
     setLayout(new GridBagLayout());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(mainPanel);
-    add(highScorePanel);
+    add(highScoreController.getView());
+    highScoreController.getView().add(getBackLabel());
     add(helpPanel);
     add(creditsPanel);
     setVisible(true);
@@ -92,7 +92,7 @@ public class GameFrame extends JFrame {
         mainPanel.setVisible(true);
         creditsPanel.setVisible(false);
         helpPanel.setVisible(false);
-        highScorePanel.setVisible(false);
+        highScoreController.getView().setVisible(false);
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
@@ -141,7 +141,7 @@ public class GameFrame extends JFrame {
         temp.setForeground(Color.black);
         mainPanel.setVisible(false);
         if (temp == highScore) {
-          highScorePanel.setVisible(true);
+          highScoreController.getView().setVisible(true);
         } else if (temp == help) {
           helpPanel.setVisible(true);
         } else if (temp == credits) {
@@ -203,29 +203,6 @@ public class GameFrame extends JFrame {
       }
     }
     return weapon;
-  }
- 
-  public void initHighScorePanel() {
-    highScorePanel = new JPanel();
-    highScorePanel.setLayout(new BoxLayout(highScorePanel,BoxLayout.Y_AXIS));
-    highScorePanel.setOpaque(false);
-    
-    String[] url = {"img/highscore1.png","img/highscore2.png"};
-    try {
-      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
-    
-      highScorePanel.add(tHeader);
-      highScorePanel.add(getBackLabel());
-      highScorePanel.setVisible(false);
-      for (int i = 0; i < highScorePanel.getComponents().length; ++i) {
-        if (highScorePanel.getComponent(i) instanceof JLabel) {
-          JLabel label = (JLabel)highScorePanel.getComponent(i);
-          label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        }
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
   
   public void initHelpPanel() {
