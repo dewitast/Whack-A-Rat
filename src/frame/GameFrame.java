@@ -20,14 +20,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class GameFrame extends JFrame implements Runnable {
+import weapon.WeaponView;
+
+import weapon.type.HammerView;
+import weapon.type.ToxicGasSprayView;
+
+public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
   private JPanel creditsPanel;
   private JPanel helpPanel;
   private JPanel highScorePanel;
+  private GamePanel gamePanel;
   private String selectedWeapon;
-  private boolean startGame = false;
 
   /*
    * Konstruktor.
@@ -118,7 +123,12 @@ public class GameFrame extends JFrame implements Runnable {
       public void mouseClicked(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start3.png"));
         mainPanel.setVisible(false);
-        startGame = true;
+        if (selectedWeapon == "hammer") {
+          gamePanel = new GamePanel(new HammerView());
+        } else {
+          gamePanel = new GamePanel(new ToxicGasSprayView());
+        }
+        gamePanel.setVisible(true);
       }
       public void mouseExited(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start1.png"));
@@ -322,16 +332,6 @@ public class GameFrame extends JFrame implements Runnable {
       creditsPanel.setVisible(false);
     } catch (Exception e) {
       e.printStackTrace();
-    }
-  }
-  
-   
-  public void run() {
-    while (!startGame);
-    if (selectedWeapon == "hammer") {
-     
-    } else {
-      
     }
   }
 }
