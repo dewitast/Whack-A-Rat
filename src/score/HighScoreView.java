@@ -46,6 +46,10 @@ public class HighScoreView extends JPanel {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
+  
+  public void addLabel(JLabel jl) {
+    add(jl);
+    jl.setAlignmentX(Component.CENTER_ALIGNMENT);
+  }  
 }

@@ -49,8 +49,6 @@ public class GameFrame extends JFrame {
     setLayout(new GridBagLayout());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(mainPanel);
-    add(highScoreController.getView());
-    highScoreController.getView().add(getBackLabel());
     add(helpPanel);
     add(creditsPanel);
     setVisible(true);
@@ -94,8 +92,12 @@ public class GameFrame extends JFrame {
         mainPanel.setVisible(true);
         creditsPanel.setVisible(false);
         helpPanel.setVisible(false);
-        highScoreController.getView().setVisible(false);
-        gamePanel.setVisible(false);
+        if (highScoreController!=null){
+          highScoreController.getView().setVisible(false);
+        }
+        if (gamePanel!=null){
+          gamePanel.setVisible(false);
+        }
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
@@ -147,6 +149,9 @@ public class GameFrame extends JFrame {
         temp.setForeground(Color.black);
         mainPanel.setVisible(false);
         if (temp == highScore) {
+          highScoreController = new HighScoreController();
+          add(highScoreController.getView());
+          highScoreController.getView().addLabel(getBackLabel());
           highScoreController.getView().setVisible(true);
         } else if (temp == help) {
           helpPanel.setVisible(true);
