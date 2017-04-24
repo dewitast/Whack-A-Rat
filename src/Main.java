@@ -33,7 +33,7 @@ public class Main {
             @Override
             public void run() {                                           
             	GameFrame jf = new GameFrame();
-            	jf.setLayout(new BorderLayout());
+            	/*jf.setLayout(new BorderLayout());
             	Weapon we = new ToxicGasSpray();
             	WeaponView vi = new ToxicGasSprayView();
             	jf.add(vi, BorderLayout.CENTER);
@@ -48,7 +48,7 @@ public class Main {
             	final JLabel jl = new HamsterView();
             	vi.add(jl);
             	jl.setOpaque(true);
-            	avi1.setOpaque(true);
+            	avi1.setOpaque(true);*/
             	
             }
         });

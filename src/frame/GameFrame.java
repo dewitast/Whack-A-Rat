@@ -22,7 +22,9 @@ import javax.swing.JTextArea;
 
 import weapon.WeaponView;
 
+import weapon.type.Hammer;
 import weapon.type.HammerView;
+import weapon.type.ToxicGasSpray;
 import weapon.type.ToxicGasSprayView;
 
 public class GameFrame extends JFrame {
@@ -32,7 +34,7 @@ public class GameFrame extends JFrame {
   private JPanel helpPanel;
   private JPanel highScorePanel;
   private GamePanel gamePanel;
-  private String selectedWeapon;
+  private String selectedWeapon = "hammer";
 
   /*
    * Konstruktor.
@@ -93,6 +95,7 @@ public class GameFrame extends JFrame {
         creditsPanel.setVisible(false);
         helpPanel.setVisible(false);
         highScorePanel.setVisible(false);
+        gamePanel.setVisible(false);
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
@@ -124,11 +127,12 @@ public class GameFrame extends JFrame {
         start.setIcon(new ImageIcon("img/start3.png"));
         mainPanel.setVisible(false);
         if (selectedWeapon == "hammer") {
-          gamePanel = new GamePanel(new HammerView());
+          gamePanel = new GamePanel(new HammerView(), new Hammer());
         } else {
-          gamePanel = new GamePanel(new ToxicGasSprayView());
+          gamePanel = new GamePanel(new ToxicGasSprayView(), new ToxicGasSpray());
         }
         setLayout(new BorderLayout());
+        gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
       }
