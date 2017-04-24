@@ -37,6 +37,7 @@ public class AnimalView extends JLabel{
       }
     showedImage.setImage(image1);
     setIcon(showedImage);
+    setOpaque(false);
   }
 
   /*
