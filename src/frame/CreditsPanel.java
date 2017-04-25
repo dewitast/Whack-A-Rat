@@ -3,12 +3,6 @@ package frame;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.util.Scanner;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -16,6 +10,7 @@ import javax.swing.JPanel;
 
 
 public class CreditsPanel extends JPanel {
+  private static final long serialVersionUID = 1L;
   String[] url = {"img/credits1.png","img/credits2.png", "img/credits3.png"};
   JLabel l1; 
   

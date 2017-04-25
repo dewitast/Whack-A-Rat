@@ -4,23 +4,29 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.util.Scanner;
-
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-
+/**
+ * Kelas HelpPanel (HelpPanel.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class HelpPanel extends JPanel {
+  private static final long serialVersionUID = 7584843508532347258L;
+  /**
+   * Atribut gambar-gambar pada menu help.
+   */
   String[] url = {"img/help1.png","img/help2.png", "img/help3.png"};
+  /**
+   * Atribut subPanel pada HelpPanel.
+   */
   JPanel subPanel;
   
+  /**
+   * Konstruktor.
+   */
   public HelpPanel() {  
     super();
     setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -92,6 +98,10 @@ public class HelpPanel extends JPanel {
     }
   }
   
+  /**
+   * Menambahkan label baru pada HelpPanel.
+   * @param jl label baru yang akan ditambahkan ke HelpPanel.
+   */
   public void addLabel(JLabel jl) {
     add(jl);
     jl.setAlignmentX(Component.CENTER_ALIGNMENT);
