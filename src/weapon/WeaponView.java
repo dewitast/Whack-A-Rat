@@ -28,6 +28,8 @@ public class WeaponView extends JPanel {
    * Konstruktor dengan parameter.
    * @param file string yang berisi nama file.
    * @param fileClicked string yang berisi nama file ketika diklik.
+   * @param hostpotX absis hotspot.
+   * @param hostpotY ordinat hotspot.
    */
   public WeaponView(String file, String fileClicked, int hotspotX, int hotspotY) {
     try {
