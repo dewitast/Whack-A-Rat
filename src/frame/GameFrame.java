@@ -8,10 +8,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -19,14 +19,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import weapon.WeaponView;
+import javax.swing.Timer;
 
 import weapon.type.Hammer;
 import weapon.type.HammerView;
 import weapon.type.ToxicGasSpray;
 import weapon.type.ToxicGasSprayView;
 import score.HighScoreController;
+
+/**
+ * @author NIM / Nama  : 13515021,13515087 / Dewita Sonya Tarabunga, Audry Nyonata
+ */
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
@@ -36,7 +39,7 @@ public class GameFrame extends JFrame {
   private HighScoreController highScoreController;
   private String selectedWeapon = "hammer";
 
-  /*
+  /**
    * Konstruktor.
    */
   public GameFrame() {
@@ -54,6 +57,9 @@ public class GameFrame extends JFrame {
     setVisible(true);
   }
   
+  /**
+   * Menginisialisasi main panel.
+   */
   public void initMainPanel() {
     mainPanel = new JPanel();
     mainPanel.setLayout(new GridBagLayout());
@@ -81,6 +87,10 @@ public class GameFrame extends JFrame {
     }
   }
   
+  /**
+   * Mengembalikan label yang berfungsi untuk kembali ke main panel.
+   * @return label back.
+   */
   public JLabel getBackLabel() {
     final JLabel back = new JLabel(new ImageIcon("img/back1.png"));
     back.addMouseListener(new MouseAdapter() {
@@ -98,14 +108,18 @@ public class GameFrame extends JFrame {
         if (gamePanel!=null){
           gamePanel.setVisible(false);
         }
+        setLayout(new GridBagLayout());
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
       }
-    });
+    });   
     return back;
   }
   
+  /**
+   * Menginisialisasi control untuk pergi ke panel lain.
+   */
   public JPanel initControl() {
     JPanel control = new JPanel();
     control.setLayout(new BoxLayout(control, BoxLayout.Y_AXIS));
@@ -134,9 +148,27 @@ public class GameFrame extends JFrame {
           gamePanel = new GamePanel(new ToxicGasSprayView(), new ToxicGasSpray());
         }
         setLayout(new BorderLayout());
-        gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
+        Timer done = new Timer(60000, new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent arg0) {
+            gamePanel.setVisible(false);
+            final JLabel up = new JLabel(new ImageIcon("img/up.png"));
+            setLayout(new GridBagLayout());
+            add(up);
+            Timer ups = new Timer(2000, new ActionListener() {
+              public void actionPerformed(ActionEvent arg0) {
+                up.setVisible(false);
+                mainPanel.setVisible(true);
+              }
+            });
+            ups.setRepeats(false);
+            ups.start();
+          }
+        });
+        done.setRepeats(false);
+        done.start();
       }
       public void mouseExited(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start1.png"));
@@ -181,6 +213,9 @@ public class GameFrame extends JFrame {
     return control;
   }
   
+  /**
+   * Menginisialisasi label untuk pemilihan senjata.
+   */
   public JPanel initWeapon() {
     JPanel weapon = new JPanel(new GridLayout(1, 2));
     weapon.setOpaque(false);
@@ -216,6 +251,9 @@ public class GameFrame extends JFrame {
     return weapon;
   }
   
+  /**
+   * Menginisialisasi help panel.
+   */
   public void initHelpPanel() {
     helpPanel = new JPanel();
     helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
@@ -288,24 +326,23 @@ public class GameFrame extends JFrame {
       e.printStackTrace();
     }
   }
+  
+  /**
+   * Menginisialisasi credits panel.
+   */
   public void initCreditsPanel() {
-    creditsPanel = new JPanel(new GridLayout(6, 1));
+    creditsPanel = new  JPanel();
+    creditsPanel.setLayout(new BoxLayout(creditsPanel, BoxLayout.Y_AXIS));
     creditsPanel.setOpaque(false);
     
     String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};
     try {
       TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
     
-      JLabel dewita = new JLabel("Dewita Sonya Tarabunga - 13515021");
-      JLabel helena = new JLabel("Helena Suzane Graciella - 13515032");
-      JLabel audry = new JLabel("Audry Nyonata - 13515087");
-      JLabel william = new JLabel("William - 13515144");
+      JLabel dewita = new JLabel(new ImageIcon("img/credits.png"));
       
       creditsPanel.add(tHeader);
       creditsPanel.add(dewita);
-      creditsPanel.add(helena);
-      creditsPanel.add(audry);
-      creditsPanel.add(william);
       creditsPanel.add(getBackLabel());
       
       for (int i = 0; i < creditsPanel.getComponents().length; ++i) {
@@ -314,7 +351,7 @@ public class GameFrame extends JFrame {
           label.setForeground(Color.orange);
           Font font = new Font(Font.SANS_SERIF, Font.BOLD, 22);
           label.setFont(font);
-          label.setHorizontalAlignment(JLabel.CENTER);
+          label.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
       }
       creditsPanel.setVisible(false);

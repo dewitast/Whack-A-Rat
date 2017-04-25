@@ -13,6 +13,6 @@ public class HammerView extends WeaponView {
    * Konstruktor.
    */
   public HammerView() {
-    super("img/hammer1.png", "img/hammer2.png");
+    super("img/hammer1.png", "img/hammer2.png", 20, 50);
   }
 }

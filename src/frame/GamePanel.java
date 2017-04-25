@@ -1,7 +1,6 @@
 package frame;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -34,10 +33,10 @@ public class GamePanel extends JPanel {
   private static final long serialVersionUID = 3086601523332143745L;
   private WeaponView cursor;
   private ScoreView score;
+  private Score skor;
   private WeaponController wco;
   private ScoreController sco;
-  private Weapon weapon;
-  private int cnt = 0;
+  private int cnt = 60;
   
   public GamePanel(WeaponView vi, Weapon we) {
     super();
@@ -46,20 +45,17 @@ public class GamePanel extends JPanel {
     cursor = vi;
     add(cursor, BorderLayout.CENTER);
     score = new ScoreView(0);
+    skor = new Score(0);
     vi.setLayout(new BorderLayout());
     vi.add(score, BorderLayout.NORTH);
-    /*final JPanel times = new JPanel();
-    final JLabel timesl = new JLabel("Times : 0");
-    times.add(timesl);
-    vi.add(times, BorderLayout.EAST);*/
-    weapon = we;
+    final JLabel times = new JLabel("Times : 60");
+    vi.add(times, BorderLayout.EAST);
     wco = new WeaponController(we, vi);
-    sco = new ScoreController(new Score(0), score);
+    sco = new ScoreController(skor, score);
     final Random rand = new Random();
-    Timer appearTimer = new Timer(3000, new ActionListener() {
+    Timer appearTimer = new Timer(1000, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent arg0) {
-        int x = rand.nextInt(cursor.getWidth());
         int y = rand.nextInt(cursor.getHeight());
         int animal = rand.nextInt(4);
         cursor.setLayout(null);
@@ -80,18 +76,20 @@ public class GamePanel extends JPanel {
         }
         new AnimalController(an, av);
         av.setLocation(0, y);
-        add(av);
+        av.addMouseListener(wco.getListener());
+        av.addMouseListener(sco.control(an.getScore()));
+        cursor.add(av);
       }
     });
-    /*Timer time = new Timer(1000, new ActionListener() {
+    Timer time = new Timer(1000, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent arg0) {
-        //++cnt;
-        timesl.setText(Integer.toString(cnt));
+        --cnt;
+        times.setText(Integer.toString(cnt));
       }
-    });*/
+    });
     appearTimer.start();
-    //time.start();
+    time.start();
   }
   
   public WeaponView getWeaponView() {
@@ -104,5 +102,10 @@ public class GamePanel extends JPanel {
   
   public void addLabel(JLabel jl) {
     cursor.add(jl, BorderLayout.SOUTH);
+  }
+  
+  public void setVisible(boolean bo) {
+    super.setVisible(bo);
+    cursor.setVisible(bo);
   }
 }

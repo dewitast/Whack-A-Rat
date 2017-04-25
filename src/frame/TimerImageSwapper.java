@@ -2,13 +2,23 @@ package frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 
+/**
+ * @author NIM / Nama  : 13515087 / Audry Nyonata
+ */
 public class TimerImageSwapper extends JLabel{
+  private static final long serialVersionUID = 4978187277656439360L;
   private int iconIndex = 0;
 
+  /**
+   * Konstruktor dengan parameter.
+   * @param url array of string yang akan saling berganti.
+   * @param delay nilai waktu delay.
+   */
   public TimerImageSwapper(final String[] url, int delay) {
     super();
     final ImageIcon[] icons = new ImageIcon[url.length];
@@ -26,6 +36,13 @@ public class TimerImageSwapper extends JLabel{
     }).start();
   }
   
+  /**
+   * Konstruktor dengan parameter.
+   * @param url array of string yang akan saling berganti.
+   * @param delay nilai waktu delay.
+   * @param width nilai lebar dari image.
+   * @param height nilai panjang dari image.
+   */
   public TimerImageSwapper(final String[] url, int delay, int width, int height) {
     super();
     final ImageIcon[] icons = new ImageIcon[url.length];

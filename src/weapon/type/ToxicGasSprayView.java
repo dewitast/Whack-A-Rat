@@ -13,6 +13,6 @@ public class ToxicGasSprayView extends WeaponView {
    * Konstruktor.
    */
   public ToxicGasSprayView() {
-    super("img/spray1.png", "img/spray2.png");
+    super("img/spray1.png", "img/spray2.png", 20, 20);
   }
 }

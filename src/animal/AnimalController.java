@@ -35,6 +35,7 @@ public class AnimalController {
     final Random rand = new Random();
 
     MouseAdapter ml = new MouseAdapter() {
+<<<<<<< HEAD
       public void mouseClicked(MouseEvent mo) {
         /*
         InputStream in;
@@ -66,6 +67,13 @@ public class AnimalController {
           dissapearTimer.start();
         }
         
+=======
+      public void mouseReleased(MouseEvent mo) {
+        view.getShowedImage().setImage(view.getImage1());
+        view.setVisible(false);
+        moveTimer.stop();
+        score = animal.getScore();
+>>>>>>> 6aa27dc18baa760423143a381287173f97c8b35c
       }
     };
     view.addMouseListener(ml);
