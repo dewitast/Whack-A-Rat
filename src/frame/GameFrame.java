@@ -154,7 +154,17 @@ public class GameFrame extends JFrame {
           @Override
           public void actionPerformed(ActionEvent arg0) {
             gamePanel.setVisible(false);
-            mainPanel.setVisible(true);
+            final JLabel up = new JLabel(new ImageIcon("img/up.png"));
+            setLayout(new GridBagLayout());
+            add(up);
+            Timer ups = new Timer(2000, new ActionListener() {
+              public void actionPerformed(ActionEvent arg0) {
+                up.setVisible(false);
+                mainPanel.setVisible(true);
+              }
+            });
+            ups.setRepeats(false);
+            ups.start();
           }
         });
         done.setRepeats(false);

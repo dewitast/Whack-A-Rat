@@ -40,7 +40,7 @@ public class ScoreController {
    */
   public MouseAdapter control(final int sc) {
     score = new MouseAdapter() {
-      public void mouseClicked(MouseEvent mo) {
+      public void mouseReleased(MouseEvent mo) {
         increaseScoreBy(sc);
       }
     };

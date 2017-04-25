@@ -29,22 +29,15 @@ import weapon.Weapon;
 import weapon.WeaponController;
 import weapon.WeaponView;
 
-/**
- * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
- */
 public class GamePanel extends JPanel {
   private static final long serialVersionUID = 3086601523332143745L;
   private WeaponView cursor;
   private ScoreView score;
+  private Score skor;
   private WeaponController wco;
   private ScoreController sco;
   private int cnt = 60;
   
-  /**
-   * Konstruktor dengan parameter.
-   * @param vi Objek weaponview yang terdapat pada game panel.
-   * @param we Objek weapon yang terdapat pada game panel.
-   */
   public GamePanel(WeaponView vi, Weapon we) {
     super();
     setLayout(new BorderLayout());
@@ -52,12 +45,13 @@ public class GamePanel extends JPanel {
     cursor = vi;
     add(cursor, BorderLayout.CENTER);
     score = new ScoreView(0);
+    skor = new Score(0);
     vi.setLayout(new BorderLayout());
     vi.add(score, BorderLayout.NORTH);
     final JLabel times = new JLabel("Times : 60");
     vi.add(times, BorderLayout.EAST);
     wco = new WeaponController(we, vi);
-    sco = new ScoreController(new Score(0), score);
+    sco = new ScoreController(skor, score);
     final Random rand = new Random();
     Timer appearTimer = new Timer(1000, new ActionListener() {
       @Override
@@ -98,34 +92,18 @@ public class GamePanel extends JPanel {
     time.start();
   }
   
-  /**
-   * Mengembalikan weapon view yang dikontrol game panel.
-   * @return weapon view yang dikontrol game panel.
-   */
   public WeaponView getWeaponView() {
     return cursor;
   }
   
-  /**
-   * Mengembalikan score view yang dikontrol game panel.
-   * @return score view yang dikontrol game panel.
-   */
   public ScoreView getScoreView() {
     return score;
   }
   
-  /**
-   * Menambah label di bagian selatan game panel.
-   * @param jl label yang akan ditambahkan ke game panel.
-   */
   public void addLabel(JLabel jl) {
     cursor.add(jl, BorderLayout.SOUTH);
   }
   
-  /**
-   * Override visibilitas dari game panel.
-   * @param bo jika true maka panel muncul, jika false maka panel hilang.
-   */
   public void setVisible(boolean bo) {
     super.setVisible(bo);
     cursor.setVisible(bo);
