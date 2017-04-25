@@ -109,11 +109,12 @@ public class GameFrame extends JFrame {
         if (gamePanel!=null){
           gamePanel.setVisible(false);
         }
+        setLayout(new GridBagLayout());
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
       }
-    });
+    });   
     return back;
   }
   
@@ -148,7 +149,6 @@ public class GameFrame extends JFrame {
           gamePanel = new GamePanel(new ToxicGasSprayView(), new ToxicGasSpray());
         }
         setLayout(new BorderLayout());
-        gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
         Timer done = new Timer(60000, new ActionListener() {
@@ -332,23 +332,18 @@ public class GameFrame extends JFrame {
    * Menginisialisasi credits panel.
    */
   public void initCreditsPanel() {
-    creditsPanel = new JPanel(new GridLayout(6, 1));
+    creditsPanel = new  JPanel();
+    creditsPanel.setLayout(new BoxLayout(creditsPanel, BoxLayout.Y_AXIS));
     creditsPanel.setOpaque(false);
     
     String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};
     try {
       TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
     
-      JLabel dewita = new JLabel("Dewita Sonya Tarabunga - 13515021");
-      JLabel helena = new JLabel("Helena Suzane Graciella - 13515032");
-      JLabel audry = new JLabel("Audry Nyonata - 13515087");
-      JLabel william = new JLabel("William - 13515144");
+      JLabel dewita = new JLabel(new ImageIcon("img/credits.png"));
       
       creditsPanel.add(tHeader);
       creditsPanel.add(dewita);
-      creditsPanel.add(helena);
-      creditsPanel.add(audry);
-      creditsPanel.add(william);
       creditsPanel.add(getBackLabel());
       
       for (int i = 0; i < creditsPanel.getComponents().length; ++i) {
@@ -357,7 +352,7 @@ public class GameFrame extends JFrame {
           label.setForeground(Color.orange);
           Font font = new Font(Font.SANS_SERIF, Font.BOLD, 22);
           label.setFont(font);
-          label.setHorizontalAlignment(JLabel.CENTER);
+          label.setAlignmentX(Component.CENTER_ALIGNMENT);
         }
       }
       creditsPanel.setVisible(false);
