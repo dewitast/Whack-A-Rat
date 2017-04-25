@@ -16,6 +16,7 @@ public class AnimalController {
   private AnimalView view;
   private Timer moveTimer;
   private Timer dissapearTimer;
+  private int score = 0;
   
   /*
    * Konstruktor dengan parameter.
@@ -32,19 +33,20 @@ public class AnimalController {
         view.getShowedImage().setImage(view.getImage1());
         view.setVisible(false);
         moveTimer.stop();
+        score = animal.getScore();
       }
     };
     view.addMouseListener(ml);
     moveTimer = new Timer(animal.getSpeed(), new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        view.setLocation((int)view.getLocation().getX()+(rand.nextInt(7)-3),(int)view.getLocation().getY()+(rand.nextInt(7)-3));
+        view.setLocation((int)view.getLocation().getX()+2,(int)view.getLocation().getY());
         view.setShowedImage(num);
         num++;
         }
     });
     moveTimer.start();
-    dissapearTimer = new Timer(5000, new ActionListener() {
+    /*dissapearTimer = new Timer(5000, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         moveTimer.stop();
@@ -52,6 +54,14 @@ public class AnimalController {
         }
     });
     dissapearTimer.setRepeats(false);
-    dissapearTimer.start();
-    }
+    dissapearTimer.start();*/
+  }
+  
+  public void resetScore() {
+    score = 0;
+  }
+  
+  public int getScore() {
+    return score;
+  }
 }

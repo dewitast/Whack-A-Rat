@@ -1,5 +1,10 @@
 package animal.species;
 
-public class CockroachView {
+import animal.AnimalView;
 
+public class CockroachView extends AnimalView {
+
+  public CockroachView() {
+    super("img/kecoakanan1.png", "img/kecoakanan2.png");
+  }
 }

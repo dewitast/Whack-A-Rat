@@ -46,7 +46,7 @@ public class WeaponController {
       public void mouseDragged(MouseEvent mo) {
       }
     };
-    view.addMouseListener(ml);
+    //view.addMouseListener(ml);
     view.addMouseMotionListener(mml);
   }
   

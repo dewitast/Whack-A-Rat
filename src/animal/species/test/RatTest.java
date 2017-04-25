@@ -4,32 +4,32 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import animal.species.Cockroach;
+import animal.species.Rat;
 
-public class CockroachTest {
-  private Cockroach c = new Cockroach();
+public class RatTest {
+  private Rat c = new Rat();
   
   @Test
-  public void testCockroach() {
-    assertEquals("Constructor: Score Error!", 5, c.getScore());
-    assertEquals("Constructor: HP Error!", 1, c.getHP());
-    assertEquals("Constructor: Speed Error!", 25, c.getSpeed());
+  public void testRat() {
+    assertEquals("Constructor: Score Error!", 10, c.getScore());
+    assertEquals("Constructor: HP Error!", 2, c.getHP());
+    assertEquals("Constructor: Speed Error!", 30, c.getSpeed());
     //assertEquals("Constructor: File Error!", "", c.getNamaFile());
   }
 
   @Test
   public void testGetScore() {
-    assertEquals("getScore Error!", 5, c.getScore());
+    assertEquals("getScore Error!", 10, c.getScore());
   }
 
   @Test
   public void testGetHP() {
-    assertEquals("getHP Error!", 1, c.getHP());
+    assertEquals("getHP Error!", 2, c.getHP());
   }
 
   @Test
   public void testGetSpeed() {
-    assertEquals("getSpeed Error!", 25, c.getSpeed());
+    assertEquals("getSpeed Error!", 30, c.getSpeed());
   }
 
   @Test
@@ -57,14 +57,14 @@ public class CockroachTest {
 
   @Test
   public void testDecreaseHP() {
-    c.decreaseHP(1);
+    c.decreaseHP(2);
     assertEquals("decreaseHP Error!", 0, c.getHP());
   }
 
   @Test
   public void testChangeSpeed() {
     c.changeSpeed(3);
-    assertEquals("decreaseHP Error!", 28, c.getSpeed());
+    assertEquals("decreaseHP Error!", 33, c.getSpeed());
   }
 
 }
