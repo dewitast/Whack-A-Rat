@@ -20,7 +20,7 @@ import weapon.type.Hammer;
  *
  */
 public class GamePanelTest {
-  private WeaponView cursor = new WeaponView("img/hammer1.png", "img/hammer2.png");
+  private WeaponView cursor = new WeaponView("img/hammer1.png", "img/hammer2.png", 20, 50);
   private Hammer weapon = new Hammer();
   private GamePanel gp = new GamePanel(cursor, weapon);
   /**
