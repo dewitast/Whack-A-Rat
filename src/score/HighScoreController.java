@@ -11,6 +11,10 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+/**
+ * Kelas HighScoreController (HighScoreController.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class HighScoreController {
   /**
    * Atribut HighScoreView yang dikontrol oleh HighScoreController.
