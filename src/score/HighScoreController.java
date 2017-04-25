@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 
 public class HighScoreController {
   /**
-   * Atribut HighScoreView yang dikontrol oleh HighScoreController
+   * Atribut HighScoreView yang dikontrol oleh HighScoreController.
    */
   private HighScoreView hView;
   /**
