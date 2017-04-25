@@ -33,10 +33,9 @@ import score.HighScoreController;
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
-  private JPanel creditsPanel;
-  private JPanel helpPanel;
+  private HelpPanel helpPanel;
   private GamePanel gamePanel;
-  //private CreditsPanel creditsPanel;
+  private CreditsPanel creditsPanel;
   private HighScoreController highScoreController;
   private String selectedWeapon = "hammer";
 
@@ -45,16 +44,12 @@ public class GameFrame extends JFrame {
    */
   public GameFrame() {
     initMainPanel();
-    initHelpPanel();
-    initCreditsPanel();
     setTitle("Whack A Rat");
     setSize(800, 600);
     setContentPane(new JLabel(new ImageIcon("img/grass2.jpeg")));
     setLayout(new GridBagLayout());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(mainPanel);
-    add(helpPanel);
-    add(creditsPanel);
     setVisible(true);
   }
   
@@ -101,8 +96,12 @@ public class GameFrame extends JFrame {
       public void mouseClicked(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back3.png"));
         mainPanel.setVisible(true);
-        creditsPanel.setVisible(false);
-        helpPanel.setVisible(false);
+        if (creditsPanel!=null){
+          creditsPanel.setVisible(false);
+        }
+        if (helpPanel!=null){
+          helpPanel.setVisible(false);
+        }
         if (highScoreController!=null){
           highScoreController.getView().setVisible(false);
         }
@@ -187,8 +186,14 @@ public class GameFrame extends JFrame {
           highScoreController.getView().addLabel(getBackLabel());
           highScoreController.getView().setVisible(true);
         } else if (temp == help) {
+          helpPanel = new HelpPanel();
+          add(helpPanel);
+          helpPanel.addLabel(getBackLabel());
           helpPanel.setVisible(true);
         } else if (temp == credits) {
+          creditsPanel = new CreditsPanel();
+          add(creditsPanel);
+          creditsPanel.addLabel(getBackLabel());
           creditsPanel.setVisible(true);
         }
       }
@@ -250,114 +255,5 @@ public class GameFrame extends JFrame {
       }
     }
     return weapon;
-  }
-  
-  /**
-   * Menginisialisasi help panel.
-   */
-  public void initHelpPanel() {
-    helpPanel = new JPanel();
-    helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
-    helpPanel.setOpaque(false);
-    
-    String[] url = {"img/help1.png","img/help2.png", "img/help3.png"};
-    try {
-      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
-    
-      JPanel subPanel = new JPanel(new GridLayout(3,4));
-      subPanel.setOpaque(false);
-      
-      String[] url1 = {"img/tikuskanan1.png", "img/tikuskanan2.png"};
-      TimerImageSwapper tikus = new TimerImageSwapper(url1,300,150,50);
-      String[] url2 = {"img/bebekkanan1.png", "img/bebekkanan2.png"};
-      TimerImageSwapper ayam = new TimerImageSwapper(url2,300,70,120);
-      String[] url3 = {"img/kecoakanan1.png", "img/kecoakanan2.png"};
-      TimerImageSwapper kecoa = new TimerImageSwapper(url3,300,100,100);
-      String[] url4 = {"img/hamsterkanan1.png", "img/hamsterkanan2.png"};
-      TimerImageSwapper hamster = new TimerImageSwapper(url4,300,100,80);
-      String[] url5 = {"img/hammer1.png", "img/hammer2.png"};
-      TimerImageSwapper palu = new TimerImageSwapper(url5,300,80,80);
-      String[] url6 = {"img/spray1.png","img/spray2.png"};
-      TimerImageSwapper gas = new TimerImageSwapper(url6,300,80,80);
-      
-      JTextArea descTikus = new JTextArea("Tikus got yang hidup dibawah kerlap-kerlip kota metropolitan");
-      JTextArea descAyam = new JTextArea("Ayam jangan dibunuh. Dia masih belum mengerti arti kehidupan");
-      JTextArea descKecoa = new JTextArea("Kecoa yang menggelikan. Cepat basmi sebelum beranak pinak!");
-      JTextArea descHamster = new JTextArea("Hamster yang polos dan imut suka tidur dimana saja. Apakah yang ia senangi? Biji bunga matahari");
-      JTextArea descPalu = new JTextArea("Palu andalan yang handal dan bisa diandalkan digunakan oleh orang-orang andal");
-      JTextArea descGas = new JTextArea("Gas beracun yang sangat ampuh membunuh makhluk hidup apapun");
-      
-      subPanel.add(tikus);
-      subPanel.add(descTikus);
-      subPanel.add(ayam);
-      subPanel.add(descAyam);
-      subPanel.add(kecoa);
-      subPanel.add(descKecoa);
-      subPanel.add(hamster);
-      subPanel.add(descHamster);
-      subPanel.add(palu);
-      subPanel.add(descPalu);
-      subPanel.add(gas);
-      subPanel.add(descGas);
-      
-      helpPanel.add(tHeader);
-      helpPanel.add(subPanel);
-      helpPanel.add(getBackLabel());
-      
-      for (int i = 0; i < helpPanel.getComponents().length; ++i) {
-        if (helpPanel.getComponent(i) instanceof JLabel) {
-          JLabel label = (JLabel)helpPanel.getComponent(i);
-          label.setAlignmentX(Component.CENTER_ALIGNMENT);
-          label.setOpaque(false);
-        }
-      }    
-      
-      for (int i = 0; i < subPanel.getComponents().length; ++i) {
-        if (subPanel.getComponent(i) instanceof JTextArea) {
-          JTextArea text = (JTextArea)subPanel.getComponent(i);
-          text.setForeground(Color.black);
-          Font font = new Font(Font.SANS_SERIF, Font.BOLD, 14);
-          text.setFont(font);
-          text.setLineWrap(true);
-          text.setOpaque(false);
-        }
-      }
-      helpPanel.setVisible(false);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  
-  /**
-   * Menginisialisasi credits panel.
-   */
-  public void initCreditsPanel() {
-    creditsPanel = new  JPanel();
-    creditsPanel.setLayout(new BoxLayout(creditsPanel, BoxLayout.Y_AXIS));
-    creditsPanel.setOpaque(false);
-    
-    String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};
-    try {
-      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
-    
-      JLabel dewita = new JLabel(new ImageIcon("img/credits.png"));
-      
-      creditsPanel.add(tHeader);
-      creditsPanel.add(dewita);
-      creditsPanel.add(getBackLabel());
-      
-      for (int i = 0; i < creditsPanel.getComponents().length; ++i) {
-        if (creditsPanel.getComponent(i) instanceof JLabel) {
-          JLabel label = (JLabel)creditsPanel.getComponent(i);
-          label.setForeground(Color.orange);
-          Font font = new Font(Font.SANS_SERIF, Font.BOLD, 22);
-          label.setFont(font);
-          label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        }
-      }
-      creditsPanel.setVisible(false);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 }
