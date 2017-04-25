@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import weapon.type.Hammer;
@@ -28,17 +27,36 @@ import weapon.type.ToxicGasSprayView;
 import score.HighScoreController;
 
 /**
- * @author NIM / Nama  : 13515021,13515087 / Dewita Sonya Tarabunga, Audry Nyonata
+ * Kelas GameFrame (GameFrame.java)
+ * @author NIM/Nama: 13515021, 13515087/Dewita Sonya Tarabunga, Audry Nyonata
  */
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
+  /**
+   * Atribut panel utama pada Frame.
+   */
   private JPanel mainPanel;
-  private HelpPanel helpPanel;
-  private GamePanel gamePanel;
+  /**
+   * Atribut panel credits pada GameFrame.
+   */
   private CreditsPanel creditsPanel;
+  /**
+   * Atribut panel help pada GameFrame.
+   */
+  private HelpPanel helpPanel;
+  /**
+   * Atribut panel game pada GameFrame.
+   */
+  private GamePanel gamePanel;
+  /**
+   * Atribut HighScoreController untuk menampilkan high score
+   */
   private HighScoreController highScoreController;
+  /**
+   * Atribut pilihan default weapon. 
+   */
   private String selectedWeapon = "hammer";
-
+  
   /**
    * Konstruktor.
    */

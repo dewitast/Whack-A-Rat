@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 
 import frame.TimerImageSwapper;
 
+/**
+ * Kelas HighScoreView (HighScoreView.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class HighScoreView extends JPanel {
   /**
    * Atribut gambar-gambar judul menu High Score.

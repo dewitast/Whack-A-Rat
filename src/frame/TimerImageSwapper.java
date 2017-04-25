@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
- * @author NIM / Nama  : 13515087 / Audry Nyonata
+ * Kelas TimerImageSwapper (TimerImageSwapper.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
  */
 public class TimerImageSwapper extends JLabel{
   private static final long serialVersionUID = 4978187277656439360L;

@@ -4,13 +4,12 @@ import point.Point;
 import weapon.Weapon;
 
 /**
- * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
- *  Nama file  : ToxicGasSpray.java
+ * Kelas ToxicGasSpray (ToxicGasSpray.java)
+ * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
-
 public class ToxicGasSpray extends Weapon {
   /**
-   * Konstruktor
+   * Konstruktor.
    */
   public ToxicGasSpray() {
     super();

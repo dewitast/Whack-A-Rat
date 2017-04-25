@@ -4,13 +4,12 @@ import point.Point;
 import weapon.Weapon;
 
 /**
- * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
- *  Nama file  : Hammer.java
+ * Kelas Hammer (Hammer.java)
+ * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
-
 public class Hammer extends Weapon {
   /**
-   * Konstruktor
+   * Konstruktor.
    */
   public Hammer() {
     super();
