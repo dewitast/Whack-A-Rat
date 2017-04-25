@@ -36,6 +36,7 @@ public class GameFrame extends JFrame {
   private JPanel creditsPanel;
   private JPanel helpPanel;
   private GamePanel gamePanel;
+  //private CreditsPanel creditsPanel;
   private HighScoreController highScoreController;
   private String selectedWeapon = "hammer";
 
