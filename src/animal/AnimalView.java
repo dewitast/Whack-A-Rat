@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -18,28 +20,33 @@ public class AnimalView extends JLabel{
   private ImageIcon showedImage;
   private Image image1;
   private Image image2;
-  private int size = 50;
+  private int width;
+  private int height;
   
   /*
    * Konstruktor dengan parameter.
    * @param namaFile string yang berisi nama file;
    */
-  public AnimalView(String namaFile1, String namaFile2) {
+
+  public AnimalView(String namaFile1, String namaFile2, int width,
+      int height) {
+    this.width = width;
+    this.height = height;
     showedImage = new ImageIcon("img/hammer1.png");
     try{
-    image1 = ImageIO.read(new File (namaFile1));
-    image1 = image1.getScaledInstance(size,size,1);
+      image1 = ImageIO.read(new File (namaFile1));
+      image1 = image1.getScaledInstance(width,height,1);
     } catch(IOException e) { 
     }
     try{
       image2= ImageIO.read(new File (namaFile2));
-      image2 = image2.getScaledInstance(size,size,1);
+      image2 = image2.getScaledInstance(width,height,1);
     } catch(IOException e) { 
       }
     showedImage.setImage(image1);
     setIcon(showedImage);
-    setSize(new Dimension (size,size));
-    setOpaque(false);
+    setSize(new Dimension (width,height));
+    setOpaque(true);
   }
 
   /*
@@ -70,7 +77,8 @@ public class AnimalView extends JLabel{
      }
   }
   public void setShowedImageStop() {
-      showedImage = null;
+      showedImage.setImage(image1.getScaledInstance(width, height/3, 1));
+      setSize(new Dimension(width,height/3));
   }
   public void resetIcon() {
     setIcon(showedImage);

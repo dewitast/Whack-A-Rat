@@ -82,8 +82,8 @@ public abstract class Animal {
    * Mengurangi HP binatang
    * @param banyaknya pengurang HP
    */
-   public void decreaseHP(int power) {
-     hp -= power;
+   public void decreaseHP() {
+     hp -= 1;
    }
     /**
    * Mengubah kecepatan binatang

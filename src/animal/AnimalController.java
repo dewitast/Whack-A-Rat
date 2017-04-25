@@ -5,10 +5,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 import javax.swing.ImageIcon;
-//import java.util.Timer;
 import javax.swing.Timer;
+import sun.audio.*;
+
+import frame.TimerImageSwapper;
 
 public class AnimalController {
   private static int num=1;
@@ -30,10 +36,36 @@ public class AnimalController {
 
     MouseAdapter ml = new MouseAdapter() {
       public void mouseClicked(MouseEvent mo) {
-        view.getShowedImage().setImage(view.getImage1());
-        view.setVisible(false);
-        moveTimer.stop();
-        score = animal.getScore();
+        /*
+        InputStream in;
+        AudioStream audioStream = null;
+        try {
+          in = new FileInputStream("sound/hammer.wav");
+          try {
+            audioStream = new AudioStream(in);
+          } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+          }
+        } catch (FileNotFoundException e1) {
+          e1.printStackTrace();
+        }
+        AudioPlayer.player.start(audioStream);
+        */
+        animal.decreaseHP();
+        if (animal.isDead()) {
+          view.setShowedImageStop();
+          moveTimer.stop();
+          dissapearTimer = new Timer(750,  new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              view.setVisible(false);
+              }
+          });
+          dissapearTimer.setRepeats(false);
+          dissapearTimer.start();
+        }
+        
       }
     };
     view.addMouseListener(ml);
@@ -43,18 +75,9 @@ public class AnimalController {
         view.setLocation((int)view.getLocation().getX()+2,(int)view.getLocation().getY());
         view.setShowedImage(num);
         num++;
-        }
+      }
     });
     moveTimer.start();
-    /*dissapearTimer = new Timer(5000, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        moveTimer.stop();
-        view.setVisible(false);
-        }
-    });
-    dissapearTimer.setRepeats(false);
-    dissapearTimer.start();*/
   }
   
   public void resetScore() {
