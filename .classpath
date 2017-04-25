@@ -2,6 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
+=======
 	<classpathentry kind="lib" path="/usr/share/java/junit4.jar"/>
+>>>>>>> 6aa27dc18baa760423143a381287173f97c8b35c
 	<classpathentry kind="output" path="bin"/>
 </classpath>
