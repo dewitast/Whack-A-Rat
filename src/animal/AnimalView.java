@@ -23,7 +23,10 @@ public class AnimalView extends JLabel{
   
   /**
    * Konstruktor dengan parameter.
-   * @param namaFile string yang berisi nama file.
+   * @param namaFile1 string yang berisi nama file1.
+   * @param namaFile2 string yang berisi nama file2.
+   * @param width lebar gambar karakter.
+   * @param height panjang gambar karakter.
    */
   public AnimalView(String namaFile1, String namaFile2, int width,
       int height) {

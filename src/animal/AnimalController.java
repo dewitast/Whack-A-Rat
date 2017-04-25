@@ -78,6 +78,7 @@ public class AnimalController {
   
   /**
    * Mengembalikan nilai score.
+   * @return score.
    */
   public int getScore() {
     return score;
