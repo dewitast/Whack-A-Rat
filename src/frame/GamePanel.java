@@ -79,7 +79,7 @@ public class GamePanel extends JPanel {
           an = new Rat();
         }
         new AnimalController(an, av);
-        av.setLocation(x, y);
+        av.setLocation(0, y);
         add(av);
       }
     });
