@@ -1,7 +1,5 @@
 package weapon.type;
 
-import java.awt.Point;
-
 import weapon.WeaponView;
 
 /**

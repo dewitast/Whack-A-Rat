@@ -27,6 +27,9 @@ import weapon.type.ToxicGasSpray;
 import weapon.type.ToxicGasSprayView;
 import score.HighScoreController;
 
+/**
+ * @author NIM / Nama  : 13515021,13515087 / Dewita Sonya Tarabunga, Audry Nyonata
+ */
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
@@ -36,7 +39,7 @@ public class GameFrame extends JFrame {
   private HighScoreController highScoreController;
   private String selectedWeapon = "hammer";
 
-  /*
+  /**
    * Konstruktor.
    */
   public GameFrame() {
@@ -54,6 +57,9 @@ public class GameFrame extends JFrame {
     setVisible(true);
   }
   
+  /**
+   * Menginisialisasi main panel.
+   */
   public void initMainPanel() {
     mainPanel = new JPanel();
     mainPanel.setLayout(new GridBagLayout());
@@ -81,6 +87,10 @@ public class GameFrame extends JFrame {
     }
   }
   
+  /**
+   * Mengembalikan label yang berfungsi untuk kembali ke main panel.
+   * @return label back.
+   */
   public JLabel getBackLabel() {
     final JLabel back = new JLabel(new ImageIcon("img/back1.png"));
     back.addMouseListener(new MouseAdapter() {
@@ -106,6 +116,9 @@ public class GameFrame extends JFrame {
     return back;
   }
   
+  /**
+   * Menginisialisasi control untuk pergi ke panel lain.
+   */
   public JPanel initControl() {
     JPanel control = new JPanel();
     control.setLayout(new BoxLayout(control, BoxLayout.Y_AXIS));
@@ -190,6 +203,9 @@ public class GameFrame extends JFrame {
     return control;
   }
   
+  /**
+   * Menginisialisasi label untuk pemilihan senjata.
+   */
   public JPanel initWeapon() {
     JPanel weapon = new JPanel(new GridLayout(1, 2));
     weapon.setOpaque(false);
@@ -225,6 +241,9 @@ public class GameFrame extends JFrame {
     return weapon;
   }
   
+  /**
+   * Menginisialisasi help panel.
+   */
   public void initHelpPanel() {
     helpPanel = new JPanel();
     helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
@@ -297,6 +316,10 @@ public class GameFrame extends JFrame {
       e.printStackTrace();
     }
   }
+  
+  /**
+   * Menginisialisasi credits panel.
+   */
   public void initCreditsPanel() {
     creditsPanel = new JPanel(new GridLayout(6, 1));
     creditsPanel.setOpaque(false);

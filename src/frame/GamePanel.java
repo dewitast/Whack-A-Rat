@@ -29,6 +29,9 @@ import weapon.Weapon;
 import weapon.WeaponController;
 import weapon.WeaponView;
 
+/**
+ * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
+ */
 public class GamePanel extends JPanel {
   private static final long serialVersionUID = 3086601523332143745L;
   private WeaponView cursor;
@@ -37,6 +40,11 @@ public class GamePanel extends JPanel {
   private ScoreController sco;
   private int cnt = 60;
   
+  /**
+   * Konstruktor dengan parameter.
+   * @param vi Objek weaponview yang terdapat pada game panel.
+   * @param we Objek weapon yang terdapat pada game panel.
+   */
   public GamePanel(WeaponView vi, Weapon we) {
     super();
     setLayout(new BorderLayout());
@@ -90,18 +98,34 @@ public class GamePanel extends JPanel {
     time.start();
   }
   
+  /**
+   * Mengembalikan weapon view yang dikontrol game panel.
+   * @return weapon view yang dikontrol game panel.
+   */
   public WeaponView getWeaponView() {
     return cursor;
   }
   
+  /**
+   * Mengembalikan score view yang dikontrol game panel.
+   * @return score view yang dikontrol game panel.
+   */
   public ScoreView getScoreView() {
     return score;
   }
   
+  /**
+   * Menambah label di bagian selatan game panel.
+   * @param jl label yang akan ditambahkan ke game panel.
+   */
   public void addLabel(JLabel jl) {
     cursor.add(jl, BorderLayout.SOUTH);
   }
   
+  /**
+   * Override visibilitas dari game panel.
+   * @param bo jika true maka panel muncul, jika false maka panel hilang.
+   */
   public void setVisible(boolean bo) {
     super.setVisible(bo);
     cursor.setVisible(bo);
