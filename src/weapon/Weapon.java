@@ -3,16 +3,15 @@ package weapon;
 import point.Point;
 
 /**
- * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
- *  Nama file  : Weapon.java
+ * Kelas Weapon (Weapon.java)
+ * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
-
 public abstract class Weapon {
   private Point position;
   private int power;
 
   /**
-   * Konstruktor
+   * Konstruktor.
    */
   public Weapon() {
     position = new Point(0, 0);
