@@ -1,10 +1,14 @@
 package frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -48,8 +52,19 @@ public class GamePanel extends JPanel {
     skor = new Score(0);
     vi.setLayout(new BorderLayout());
     vi.add(score, BorderLayout.NORTH);
-    final JLabel times = new JLabel("Times : 60");
-    vi.add(times, BorderLayout.EAST);
+    final JLabel times = new JLabel();
+    ImageIcon kayu = new ImageIcon("img/kayu.png");
+    Image img = kayu.getImage();
+    Image newimg = img.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
+    kayu = new ImageIcon(newimg);
+    times.setIcon(kayu);
+    times.setText("01:00");
+    times.setHorizontalTextPosition(JLabel.CENTER);
+    times.setVerticalTextPosition(JLabel.CENTER);
+    times.setFont(new Font("Purisa", Font.BOLD, 30));
+    times.setOpaque(false);
+    times.setForeground(Color.WHITE);
+    vi.add(times, BorderLayout.SOUTH);
     wco = new WeaponController(we, vi);
     sco = new ScoreController(skor, score);
     final Random rand = new Random();
@@ -85,7 +100,7 @@ public class GamePanel extends JPanel {
       @Override
       public void actionPerformed(ActionEvent arg0) {
         --cnt;
-        times.setText(Integer.toString(cnt));
+        times.setText("00:" + Integer.toString(cnt));
       }
     });
     appearTimer.start();
