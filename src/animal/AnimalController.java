@@ -29,7 +29,7 @@ public class AnimalController {
     final Random rand = new Random();
 
     MouseAdapter ml = new MouseAdapter() {
-      public void mouseClicked(MouseEvent mo) {
+      public void mouseReleased(MouseEvent mo) {
         view.getShowedImage().setImage(view.getImage1());
         view.setVisible(false);
         moveTimer.stop();

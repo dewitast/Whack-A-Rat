@@ -9,22 +9,26 @@ import javax.swing.JPanel;
  * @author NIM / Nama  : 13515021 / Dewita Sonya Tarabunga
  *  Nama file  : WeaponView.java
  */
-public class WeaponView extends JPanel {
+public abstract class WeaponView extends JPanel {
   private static final long serialVersionUID = 3660825063037349659L;
-  private Image imgclicked;
-  private Image img;
+  protected Image imgclicked;
+  protected Image img;
+  protected Point hotspot;
   
   /*
    * Konstruktor dengan parameter.
    * @param file string yang berisi nama file.
    * @param fileClicked string yang berisi nama file ketika diklik.
+   * @param hotspotX nilai absis dari posisi hotspot.
+   * @param hotspotY nilai ordinat dari posisi hotspot.
    */
-  public WeaponView(String file, String fileClicked) {
+  public WeaponView(String file, String fileClicked, int hotspotX, int hotspotY) {
 	  try {
 	    img = ImageIO.read(new File(file));
 	    img = img.getScaledInstance(64, 64, 1);
 	    imgclicked = ImageIO.read(new File(fileClicked));
 	    imgclicked = imgclicked.getScaledInstance(64, 64, 1);
+	    hotspot = new Point(hotspotX, hotspotY);
 	    resetCursor();
 	  } catch(IOException ex) {
 	  }
@@ -57,7 +61,6 @@ public class WeaponView extends JPanel {
   public void resetCursor() {
     assert(img != null);
 	  Toolkit tk = Toolkit.getDefaultToolkit();
-	  Point hotspot = new Point(0, 0);
 	  Cursor cursor = tk.createCustomCursor(img, hotspot, "palu1");
 	  setCursor(cursor);
   }
@@ -70,7 +73,6 @@ public class WeaponView extends JPanel {
   public void resetCursorClicked() {
     assert(imgclicked != null);
     Toolkit tk = Toolkit.getDefaultToolkit();
-    Point hotspot = new Point(0, 0);
     Cursor cursor = tk.createCustomCursor(imgclicked, hotspot, "palu2");
     setCursor(cursor);
   }

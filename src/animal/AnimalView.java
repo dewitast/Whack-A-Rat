@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class AnimalView extends JLabel{
+public abstract class AnimalView extends JLabel{
   private static final long serialVersionUID = 3660825063037349659L;
   private ImageIcon showedImage;
   private Image image1;

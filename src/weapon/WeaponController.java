@@ -1,5 +1,6 @@
 package weapon;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,6 +12,7 @@ import java.awt.event.MouseMotionListener;
 public class WeaponController {
   private Weapon weapon;
   private WeaponView view;
+  private static MouseAdapter click;
   
   /*
    * Konstruktor dengan parameter.
@@ -22,13 +24,7 @@ public class WeaponController {
     assert(vi != null);
     weapon = we;
     view = vi;
-    MouseListener ml = new MouseListener() {
-      public void mouseClicked(MouseEvent mo) {
-      }
-      public void mouseEntered(MouseEvent mo) {
-      }
-      public void mouseExited(MouseEvent mo) {
-      }
+    click = new MouseAdapter() {
       public void mousePressed(MouseEvent mo) {
         view.resetCursorClicked();
       }
@@ -46,7 +42,7 @@ public class WeaponController {
       public void mouseDragged(MouseEvent mo) {
       }
     };
-    //view.addMouseListener(ml);
+    view.addMouseListener(click);
     view.addMouseMotionListener(mml);
   }
   
@@ -61,5 +57,9 @@ public class WeaponController {
     assert(abs >= 0);
     assert(ord >= 0);
     weapon.setPosition(abs, ord);
+  }
+  
+  public MouseListener getListener() {
+    return click;
   }
 }

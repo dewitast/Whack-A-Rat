@@ -8,10 +8,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -19,14 +19,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import weapon.WeaponView;
+import javax.swing.Timer;
 
 import weapon.type.Hammer;
 import weapon.type.HammerView;
 import weapon.type.ToxicGasSpray;
 import weapon.type.ToxicGasSprayView;
 import score.HighScoreController;
+
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
@@ -137,6 +137,15 @@ public class GameFrame extends JFrame {
         gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
+        Timer done = new Timer(60000, new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent arg0) {
+            gamePanel.setVisible(false);
+            mainPanel.setVisible(true);
+          }
+        });
+        done.setRepeats(false);
+        done.start();
       }
       public void mouseExited(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start1.png"));

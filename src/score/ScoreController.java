@@ -4,6 +4,8 @@
 package score;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author suzaneringoringo
@@ -21,7 +23,7 @@ public class ScoreController {
   /**
    * Penerima aksi
    */
-  private ActionListener actionListener;
+  private static MouseAdapter score;
   
   /**
    * Konstruktor
@@ -36,8 +38,13 @@ public class ScoreController {
   /**
    * Prosedur kontrol
    */
-  public void control() {
-    
+  public MouseAdapter control(final int sc) {
+    score = new MouseAdapter() {
+      public void mouseClicked(MouseEvent mo) {
+        increaseScoreBy(sc);
+      }
+    };
+    return score;
   }
   
   /**
