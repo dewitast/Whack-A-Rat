@@ -17,16 +17,6 @@ public class HighScoreController {
   private final int[] score = new int[5];
   private static int nHighScore = 0;
   
-  
-  public static void main (String[] args) {
-    HighScoreController hs = new HighScoreController();
-    JFrame jf = new JFrame();
-    jf.setLayout(new FlowLayout());
-    jf.setSize(400,400);
-    jf.add(hs.hView);
-    jf.setVisible(true);
-  }
-  
   public HighScoreView getView() {
     return hView;
   }
