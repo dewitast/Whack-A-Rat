@@ -8,12 +8,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+/**
+ * Kelas CreditsPanel (CreditsPanel.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class CreditsPanel extends JPanel {
   private static final long serialVersionUID = 1L;
+  /**
+   * Atribut gambar-gambar yang dipakai pada menu credits.
+   */
   String[] url = {"img/credits1.png","img/credits2.png", "img/credits3.png"};
+  /**
+   * Atribut label pada CreditsPanel.
+   */
   JLabel l1; 
   
+  /**
+   * Konstruktor.
+   */
   public CreditsPanel() {  
     super();
     setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -39,6 +51,10 @@ public class CreditsPanel extends JPanel {
     }
   }
 
+  /**
+   * Menambahkan label baru pada CreditsPanel.
+   * @param jl label baru yang akan ditambahkan ke CreditsPanel.
+   */
   public void addLabel(JLabel jl) {
     add(jl);
     jl.setAlignmentX(Component.CENTER_ALIGNMENT);
