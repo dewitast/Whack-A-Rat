@@ -15,4 +15,5 @@ public class HammerView extends WeaponView {
   public HammerView() {
     super("img/hammer1.png", "img/hammer2.png", 20, 50);
   }
+  
 }

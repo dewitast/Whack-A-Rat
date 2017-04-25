@@ -4,6 +4,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import weapon.type.HammerView;
+import weapon.type.ToxicGasSprayView;
 
 /**
  * Kelas WeaponController (WeaponController.java)
@@ -36,6 +46,36 @@ public class WeaponController {
     click = new MouseAdapter() {
       public void mousePressed(MouseEvent mo) {
         view.resetCursorClicked();
+        if (view instanceof HammerView) {
+          InputStream in;
+          AudioStream audioStream = null;
+          try {
+            in = new FileInputStream("sound/hammer.wav");
+            try {
+              audioStream = new AudioStream(in);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+          }
+          AudioPlayer.player.start(audioStream);
+        }
+        else if (view instanceof ToxicGasSprayView) {
+          InputStream in;
+          AudioStream audioStream = null;
+          try {
+            in = new FileInputStream("sound/spray.wav");
+            try {
+              audioStream = new AudioStream(in);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+          }
+          AudioPlayer.player.start(audioStream);
+        }
       }
       public void mouseReleased(MouseEvent mo) {
         view.resetCursor();
