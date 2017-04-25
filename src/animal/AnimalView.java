@@ -18,29 +18,33 @@ public class AnimalView extends JLabel{
   private ImageIcon showedImage;
   private Image image1;
   private Image image2;
-  private int size = 50;
+  private int width;
+  private int height;
   
   /**
    * Konstruktor dengan parameter.
    * @param namaFile string yang berisi nama file.
    */
-  public AnimalView(String namaFile1, String namaFile2, int width, int height) {
+  public AnimalView(String namaFile1, String namaFile2, int width,
+      int height) {
+    this.width = width;
+    this.height = height;
     showedImage = new ImageIcon("img/hammer1.png");
     try{
-    image1 = ImageIO.read(new File (namaFile1));
-    image1 = image1.getScaledInstance(width,height,1);
+      image1 = ImageIO.read(new File (namaFile1));
+      image1 = image1.getScaledInstance(this.width,this.height,1);
     } catch(IOException e) { 
     }
     try{
       image2= ImageIO.read(new File (namaFile2));
-      image2 = image2.getScaledInstance(width,height,1);
+      image2 = image2.getScaledInstance(this.width,this.height,1);
     } catch(IOException e) { 
       }
     showedImage.setImage(image1);
     setIcon(showedImage);
-    setSize(new Dimension (width,height));
+    setSize(new Dimension (this.width,this.height));
     setOpaque(false);
-  }
+}
 
   /**
    * Mengembalikan image1.

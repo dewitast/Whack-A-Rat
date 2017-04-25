@@ -27,8 +27,6 @@ public class HamsterViewTest {
    */
   @Test
   public void testHamsterView() {
-    Image image1;
-    Image image2;
     try {
       Image originalImage1 = ImageIO.read(new File("img/hamsterkanan1.png")); 
       originalImage1 = originalImage1.getScaledInstance(50, 50, 1);

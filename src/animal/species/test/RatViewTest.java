@@ -27,8 +27,6 @@ public class RatViewTest {
    */
   @Test
   public void testRatView() {
-    Image image1;
-    Image image2;
     try {
       Image originalImage1 = ImageIO.read(new File("img/tikuskanan1.png")); 
       originalImage1 = originalImage1.getScaledInstance(50, 50, 1);

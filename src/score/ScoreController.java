@@ -8,27 +8,27 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * @author suzaneringoringo
- *
+ * Kelas ScoreController (ScoreController.java)
+ * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
 public class ScoreController {
   /**
-   * Score (model) yang dikendalikan
+   * Score (model) yang dikendalikan.
    */
   private Score myScore;
   /**
-   * ScoreView (view) yang dikendalikan
+   * ScoreView (view) yang dikendalikan.
    */
   private ScoreView myScoreView;
   /**
-   * Penerima aksi
+   * Penerima aksi.
    */
   private static MouseAdapter score;
   
   /**
-   * Konstruktor
-   * @param parScore model yang dikendalikan
-   * @param parScoreView view yang dikendalikan
+   * Konstruktor.
+   * @param parScore model yang dikendalikan.
+   * @param parScoreView view yang dikendalikan.
    */
   public ScoreController(Score parScore, ScoreView parScoreView) {
     myScore = parScore;
@@ -36,7 +36,7 @@ public class ScoreController {
   }
   
   /**
-   * Prosedur kontrol
+   * Prosedur kontrol.
    */
   public MouseAdapter control(final int sc) {
     score = new MouseAdapter() {
@@ -48,8 +48,8 @@ public class ScoreController {
   }
   
   /**
-   * Menambah nilai skor pada model
-   * @param parScore penambah nilai skor pada model
+   * Menambah nilai skor pada model.
+   * @param parScore penambah nilai skor pada model.
    */
   public void increaseScoreBy(int parScore) {
     myScore.increaseScoreBy(parScore);

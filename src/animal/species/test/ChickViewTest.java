@@ -27,8 +27,6 @@ public class ChickViewTest {
    */
   @Test
   public void testChickView() {
-    Image image1;
-    Image image2;
     try {
       Image originalImage1 = ImageIO.read(new File("img/bebekkanan1.png")); 
       originalImage1 = originalImage1.getScaledInstance(50, 50, 1);

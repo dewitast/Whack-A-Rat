@@ -27,8 +27,6 @@ public class CockroachViewTest {
    */
   @Test
   public void testCockroachView() {
-    Image image1;
-    Image image2;
     try {
       Image originalImage1 = ImageIO.read(new File("img/kecoakanan1.png")); 
       originalImage1 = originalImage1.getScaledInstance(50, 50, 1);
