@@ -7,7 +7,13 @@ import point.Point;
  * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
 public abstract class Weapon {
+  /**
+   * Atribut posisi Weapon.
+   */
   private Point position;
+  /**
+   * Atribut kekuatan Weapon.
+   */
   private int power;
 
   /**
