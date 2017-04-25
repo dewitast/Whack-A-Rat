@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,11 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
-
-import animal.AnimalController;
-import animal.species.Hamster;
-import animal.species.HamsterView;
 
 import weapon.WeaponView;
 
@@ -32,26 +26,21 @@ import weapon.type.Hammer;
 import weapon.type.HammerView;
 import weapon.type.ToxicGasSpray;
 import weapon.type.ToxicGasSprayView;
-
+import score.HighScoreController;
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 4153332469558642589L;
   private JPanel mainPanel;
   private JPanel creditsPanel;
   private JPanel helpPanel;
-  private JPanel highScorePanel;
   private GamePanel gamePanel;
+  private HighScoreController highScoreController;
   private String selectedWeapon = "hammer";
 
   /*
    * Konstruktor.
    */
   public GameFrame() {
-    mainPanel = new JPanel();
-    highScorePanel = new JPanel();
-    helpPanel = new JPanel();
-    creditsPanel = new JPanel(new GridLayout(6, 1));
     initMainPanel();
-    initHighScorePanel();
     initHelpPanel();
     initCreditsPanel();
     setTitle("Whack A Rat");
@@ -60,14 +49,13 @@ public class GameFrame extends JFrame {
     setLayout(new GridBagLayout());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(mainPanel);
-    add(highScorePanel);
     add(helpPanel);
     add(creditsPanel);
     setVisible(true);
   }
   
   public void initMainPanel() {
-    mainPanel.removeAll();
+    mainPanel = new JPanel();
     mainPanel.setLayout(new GridBagLayout());
     mainPanel.setOpaque(false);
     
@@ -104,8 +92,12 @@ public class GameFrame extends JFrame {
         mainPanel.setVisible(true);
         creditsPanel.setVisible(false);
         helpPanel.setVisible(false);
-        highScorePanel.setVisible(false);
-        if (gamePanel != null) gamePanel.setVisible(false);
+        if (highScoreController!=null){
+          highScoreController.getView().setVisible(false);
+        }
+        if (gamePanel!=null){
+          gamePanel.setVisible(false);
+        }
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
@@ -145,19 +137,6 @@ public class GameFrame extends JFrame {
         gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
-        Timer gameTime = new Timer(60000, new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent arg0) {
-            gamePanel.setVisible(false);
-            mainPanel.setVisible(true);
-            initMainPanel();
-            initHelpPanel();
-            initHighScorePanel();
-            initCreditsPanel();
-          }
-        });
-        gameTime.setRepeats(false);
-        gameTime.start();
       }
       public void mouseExited(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start1.png"));
@@ -170,7 +149,10 @@ public class GameFrame extends JFrame {
         temp.setForeground(Color.black);
         mainPanel.setVisible(false);
         if (temp == highScore) {
-          highScorePanel.setVisible(true);
+          highScoreController = new HighScoreController();
+          add(highScoreController.getView());
+          highScoreController.getView().addLabel(getBackLabel());
+          highScoreController.getView().setVisible(true);
         } else if (temp == help) {
           helpPanel.setVisible(true);
         } else if (temp == credits) {
@@ -233,32 +215,9 @@ public class GameFrame extends JFrame {
     }
     return weapon;
   }
- 
-  public void initHighScorePanel() {
-    highScorePanel.removeAll();
-    highScorePanel.setLayout(new BoxLayout(highScorePanel,BoxLayout.Y_AXIS));
-    highScorePanel.setOpaque(false);
-    
-    String[] url = {"img/highscore1.png","img/highscore2.png"};
-    try {
-      TimerImageSwapper tHeader = new TimerImageSwapper(url,400);
-    
-      highScorePanel.add(tHeader);
-      highScorePanel.add(getBackLabel());
-      highScorePanel.setVisible(false);
-      for (int i = 0; i < highScorePanel.getComponents().length; ++i) {
-        if (highScorePanel.getComponent(i) instanceof JLabel) {
-          JLabel label = (JLabel)highScorePanel.getComponent(i);
-          label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        }
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
   
   public void initHelpPanel() {
-    helpPanel.removeAll();
+    helpPanel = new JPanel();
     helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
     helpPanel.setOpaque(false);
     
@@ -330,7 +289,7 @@ public class GameFrame extends JFrame {
     }
   }
   public void initCreditsPanel() {
-    creditsPanel.removeAll();
+    creditsPanel = new JPanel(new GridLayout(6, 1));
     creditsPanel.setOpaque(false);
     
     String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};
