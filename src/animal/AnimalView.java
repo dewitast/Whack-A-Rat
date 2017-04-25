@@ -1,5 +1,6 @@
 package animal;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -37,6 +38,7 @@ public class AnimalView extends JLabel{
       }
     showedImage.setImage(image1);
     setIcon(showedImage);
+    setSize(new Dimension (size,size));
     setOpaque(false);
   }
 
@@ -69,5 +71,11 @@ public class AnimalView extends JLabel{
   }
   public void setShowedImageStop() {
       showedImage = null;
+  }
+  public void resetIcon() {
+    setIcon(showedImage);
+    if (showedImage == null) {
+      setSize(1, 1);
+    }
   }
 }

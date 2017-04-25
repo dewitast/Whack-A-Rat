@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,6 +20,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
+
+import animal.AnimalController;
+import animal.species.Hamster;
+import animal.species.HamsterView;
 
 import weapon.WeaponView;
 
@@ -40,6 +46,10 @@ public class GameFrame extends JFrame {
    * Konstruktor.
    */
   public GameFrame() {
+    mainPanel = new JPanel();
+    highScorePanel = new JPanel();
+    helpPanel = new JPanel();
+    creditsPanel = new JPanel(new GridLayout(6, 1));
     initMainPanel();
     initHighScorePanel();
     initHelpPanel();
@@ -57,7 +67,7 @@ public class GameFrame extends JFrame {
   }
   
   public void initMainPanel() {
-    mainPanel = new JPanel();
+    mainPanel.removeAll();
     mainPanel.setLayout(new GridBagLayout());
     mainPanel.setOpaque(false);
     
@@ -95,7 +105,7 @@ public class GameFrame extends JFrame {
         creditsPanel.setVisible(false);
         helpPanel.setVisible(false);
         highScorePanel.setVisible(false);
-        gamePanel.setVisible(false);
+        if (gamePanel != null) gamePanel.setVisible(false);
       }
       public void mouseExited(MouseEvent mo) {
         back.setIcon(new ImageIcon("img/back1.png"));
@@ -135,6 +145,19 @@ public class GameFrame extends JFrame {
         gamePanel.addLabel(getBackLabel());
         add(gamePanel);
         gamePanel.setVisible(true);
+        Timer gameTime = new Timer(60000, new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent arg0) {
+            gamePanel.setVisible(false);
+            mainPanel.setVisible(true);
+            initMainPanel();
+            initHelpPanel();
+            initHighScorePanel();
+            initCreditsPanel();
+          }
+        });
+        gameTime.setRepeats(false);
+        gameTime.start();
       }
       public void mouseExited(MouseEvent mo) {
         start.setIcon(new ImageIcon("img/start1.png"));
@@ -212,7 +235,7 @@ public class GameFrame extends JFrame {
   }
  
   public void initHighScorePanel() {
-    highScorePanel = new JPanel();
+    highScorePanel.removeAll();
     highScorePanel.setLayout(new BoxLayout(highScorePanel,BoxLayout.Y_AXIS));
     highScorePanel.setOpaque(false);
     
@@ -235,7 +258,7 @@ public class GameFrame extends JFrame {
   }
   
   public void initHelpPanel() {
-    helpPanel = new JPanel();
+    helpPanel.removeAll();
     helpPanel.setLayout((new BoxLayout(helpPanel,BoxLayout.Y_AXIS)));
     helpPanel.setOpaque(false);
     
@@ -307,7 +330,7 @@ public class GameFrame extends JFrame {
     }
   }
   public void initCreditsPanel() {
-    creditsPanel = new JPanel(new GridLayout(6, 1));
+    creditsPanel.removeAll();
     creditsPanel.setOpaque(false);
     
     String[] url = {"img/credits1.png","img/credits2.png","img/credits3.png"};

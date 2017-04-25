@@ -6,6 +6,6 @@ public class ChickView extends AnimalView{
   private static final long serialVersionUID = 1L;
 
   public ChickView() {
-    super("img/hamsterkanan1.png", "img/hamsterkanan2.png");
+    super("img/bebekkanan1.png", "img/bebekkanan2.png");
   }
 }
