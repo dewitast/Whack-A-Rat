@@ -6,6 +6,7 @@ import point.Point;
  * Kelas Weapon (Weapon.java)
  * @author NIM/Nama: 13515021/Dewita Sonya Tarabunga
  */
+
 public abstract class Weapon {
   /**
    * Atribut posisi Weapon.
