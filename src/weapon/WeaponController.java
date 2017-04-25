@@ -97,10 +97,10 @@ public class WeaponController {
   
   /**
    * Menggerakkan model senjata ke posisi tertentu.
-   * I.S. abs < 0 dan ord < 0
+   * I.S. abs < 0 dan ord < 0.
    * F.S senjata bergerak ke posisi tersebut.
-   * @param nilai absis lokasi senjata bergerak.
-   * @param nilai ordinat lokasi senjata bergerak.
+   * @param abs nilai absis lokasi senjata bergerak.
+   * @param ord nilai ordinat lokasi senjata bergerak.
    */
   public void move(int abs, int ord) {
     assert(abs >= 0);
@@ -118,7 +118,7 @@ public class WeaponController {
   
   /**
    * Mengembalikan Weapon yang dikendalikan oleh WeaponController.
-   * return weapon.
+   * @return weapon.
    */
   public Weapon getWeapon() {
     return weapon;
@@ -126,7 +126,7 @@ public class WeaponController {
   
   /**
    * Mengembalikan WeaponView yang dikendalikan oleh WeaponController.
-   * return view.
+   * @return view.
    */
   public WeaponView getWeaponView() {
     return view;
