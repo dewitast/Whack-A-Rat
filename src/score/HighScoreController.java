@@ -12,15 +12,34 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 public class HighScoreController {
+  /**
+   * Atribut HighScoreView yang dikontrol oleh HighScoreController
+   */
   private HighScoreView hView;
+  /**
+   * Atribut daftar nama.
+   */
   private final String[] name = new String[5];
+  /**
+   * Atribut daftar skor.
+   */
   private final int[] score = new int[5];
-  private static int nHighScore = 0;
+  /**
+   * Atribut jumlah high score yang tercatat.
+   */
+  private int nHighScore = 0;
   
+  /**
+   * Mengembalikan view yang dikendalikan oleh HighScoreController.
+   * @return hView.
+   */
   public HighScoreView getView() {
     return hView;
   }
   
+  /**
+   * Konstruktor.
+   */
   public HighScoreController() {
     hView = new HighScoreView();
     try {
@@ -47,6 +66,11 @@ public class HighScoreController {
     
   }
   
+  /**
+   * Mengadakan high score baru.
+   * @param parName nama pada high score baru.
+   * @param parScore skor pada high score baru.
+   */
   public void add(final String parName, final int parScore) {
     int i = 0;
     if (nHighScore == 5) {
