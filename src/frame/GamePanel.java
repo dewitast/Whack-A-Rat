@@ -25,6 +25,7 @@ import animal.species.HamsterView;
 import animal.species.Rat;
 import animal.species.RatView;
 
+import score.HighScoreController;
 import score.Score;
 import score.ScoreController;
 import score.ScoreView;
@@ -40,13 +41,15 @@ public class GamePanel extends JPanel {
   private Score skor;
   private WeaponController wco;
   private ScoreController sco;
+  private HighScoreController hsco;
   private int cnt = 60;
   
-  public GamePanel(WeaponView vi, Weapon we) {
+  public GamePanel(WeaponView vi, Weapon we, HighScoreController hco) {
     super();
     setLayout(new BorderLayout());
     setOpaque(false);
     cursor = vi;
+    hsco = hco;
     add(cursor, BorderLayout.CENTER);
     score = new ScoreView(0);
     skor = new Score(0);
@@ -122,5 +125,9 @@ public class GamePanel extends JPanel {
   public void setVisible(boolean bo) {
     super.setVisible(bo);
     cursor.setVisible(bo);
+  }
+  
+  public int getScore() {
+    return sco.getScore();
   }
 }

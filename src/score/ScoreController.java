@@ -55,4 +55,8 @@ public class ScoreController {
     myScore.increaseScoreBy(parScore);
     myScoreView.setScore(myScore.getScore());
   }
+  
+  public int getScore() {
+    return myScore.getScore();
+  }
 }

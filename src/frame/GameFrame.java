@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -44,12 +45,25 @@ public class GameFrame extends JFrame {
    */
   public GameFrame() {
     initMainPanel();
+    helpPanel = new HelpPanel();    
+    creditsPanel = new CreditsPanel();    
+    highScoreController = new HighScoreController();
     setTitle("Whack A Rat");
     setSize(800, 600);
     setContentPane(new JLabel(new ImageIcon("img/grass2.jpeg")));
     setLayout(new GridBagLayout());
+    helpPanel.addLabel(getBackLabel());
+    creditsPanel.addLabel(getBackLabel());
+    highScoreController.getView().addLabel(getBackLabel());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(mainPanel);
+    add(helpPanel);
+    add(creditsPanel);
+    add(highScoreController.getView());
+    helpPanel.setVisible(false);
+    creditsPanel.setVisible(false);
+    highScoreController.getView().setVisible(false);
+    setExtendedState(Frame.MAXIMIZED_BOTH);
     setVisible(true);
   }
   
@@ -143,9 +157,9 @@ public class GameFrame extends JFrame {
         start.setIcon(new ImageIcon("img/start3.png"));
         mainPanel.setVisible(false);
         if (selectedWeapon == "hammer") {
-          gamePanel = new GamePanel(new HammerView(), new Hammer());
+          gamePanel = new GamePanel(new HammerView(), new Hammer(), highScoreController);
         } else {
-          gamePanel = new GamePanel(new ToxicGasSprayView(), new ToxicGasSpray());
+          gamePanel = new GamePanel(new ToxicGasSprayView(), new ToxicGasSpray(), highScoreController);
         }
         setLayout(new BorderLayout());
         add(gamePanel);
@@ -156,10 +170,16 @@ public class GameFrame extends JFrame {
             gamePanel.setVisible(false);
             final JLabel up = new JLabel(new ImageIcon("img/up.png"));
             setLayout(new GridBagLayout());
+            up.setText("Your Score : " + Integer.toString(gamePanel.getScore()));
+            up.setHorizontalTextPosition(JLabel.CENTER);
+            up.setVerticalTextPosition(JLabel.BOTTOM);
+            up.setFont(new Font("Purisa", Font.BOLD, 30));
+            up.setForeground(Color.YELLOW);
             add(up);
             Timer ups = new Timer(2000, new ActionListener() {
               public void actionPerformed(ActionEvent arg0) {
                 up.setVisible(false);
+                highScoreController.add("anonymous", gamePanel.getScore());
                 mainPanel.setVisible(true);
               }
             });
@@ -181,19 +201,10 @@ public class GameFrame extends JFrame {
         temp.setForeground(Color.black);
         mainPanel.setVisible(false);
         if (temp == highScore) {
-          highScoreController = new HighScoreController();
-          add(highScoreController.getView());
-          highScoreController.getView().addLabel(getBackLabel());
           highScoreController.getView().setVisible(true);
         } else if (temp == help) {
-          helpPanel = new HelpPanel();
-          add(helpPanel);
-          helpPanel.addLabel(getBackLabel());
           helpPanel.setVisible(true);
         } else if (temp == credits) {
-          creditsPanel = new CreditsPanel();
-          add(creditsPanel);
-          creditsPanel.addLabel(getBackLabel());
           creditsPanel.setVisible(true);
         }
       }

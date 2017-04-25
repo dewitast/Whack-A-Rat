@@ -52,6 +52,13 @@ public class HelpPanel extends JPanel {
       JTextArea descPalu = new JTextArea("Palu andalan yang handal dan bisa diandalkan digunakan oleh orang-orang andal");
       JTextArea descGas = new JTextArea("Gas beracun yang sangat ampuh membunuh makhluk hidup apapun");
       
+      descTikus.setWrapStyleWord(true);
+      descAyam.setWrapStyleWord(true);
+      descKecoa.setWrapStyleWord(true);
+      descHamster.setWrapStyleWord(true);
+      descPalu.setWrapStyleWord(true);
+      descGas.setWrapStyleWord(true);
+      
       subPanel.add(tikus);
       subPanel.add(descTikus);
       subPanel.add(ayam);
