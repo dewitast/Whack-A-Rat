@@ -4,27 +4,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Random;
-import javax.swing.ImageIcon;
 import javax.swing.Timer;
-import sun.audio.*;
 
-import frame.TimerImageSwapper;
-
+/**
+ * Kelas AnimalController
+ * @author
+ */
 public class AnimalController {
+  /**
+   * Penanda untuk default showImage.
+   */
   private static int num=1;
+  /**
+   * Atribut Animal yang dikendalikan oleh AnimalController.
+   */
   private Animal animal;
+  /**
+   * Atribut AnimalView yang dikendalikan oleh AnimalController.
+   */
   private AnimalView view;
+  /**
+   * Atribut Timer yang mengatur pergerakan objek.
+   */
   private Timer moveTimer;
-  private Timer dissapearTimer;
+  /**
+   * Atribut skor dari Animal yang dikendalikan.
+   */
   private int score = 0;
   
-  /*
+  /**
    * Konstruktor dengan parameter.
    * @param an Objek animal.
    * @param vi Objek view.
@@ -32,48 +40,12 @@ public class AnimalController {
   public AnimalController(Animal an, AnimalView vi) {
     animal = an;
     view = vi;
-    final Random rand = new Random();
-
     MouseAdapter ml = new MouseAdapter() {
-<<<<<<< HEAD
-      public void mouseClicked(MouseEvent mo) {
-        /*
-        InputStream in;
-        AudioStream audioStream = null;
-        try {
-          in = new FileInputStream("sound/hammer.wav");
-          try {
-            audioStream = new AudioStream(in);
-          } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-          }
-        } catch (FileNotFoundException e1) {
-          e1.printStackTrace();
-        }
-        AudioPlayer.player.start(audioStream);
-        */
-        animal.decreaseHP();
-        if (animal.isDead()) {
-          view.setShowedImageStop();
-          moveTimer.stop();
-          dissapearTimer = new Timer(750,  new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              view.setVisible(false);
-              }
-          });
-          dissapearTimer.setRepeats(false);
-          dissapearTimer.start();
-        }
-        
-=======
       public void mouseReleased(MouseEvent mo) {
         view.getShowedImage().setImage(view.getImage1());
         view.setVisible(false);
         moveTimer.stop();
         score = animal.getScore();
->>>>>>> 6aa27dc18baa760423143a381287173f97c8b35c
       }
     };
     view.addMouseListener(ml);
@@ -83,15 +55,30 @@ public class AnimalController {
         view.setLocation((int)view.getLocation().getX()+2,(int)view.getLocation().getY());
         view.setShowedImage(num);
         num++;
-      }
+        }
     });
     moveTimer.start();
+    /*dissapearTimer = new Timer(5000, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        moveTimer.stop();
+        view.setVisible(false);
+        }
+    });
+    dissapearTimer.setRepeats(false);
+    dissapearTimer.start();*/
   }
   
+  /**
+   * Mengubah nilai score menjadi 0.
+   */
   public void resetScore() {
     score = 0;
   }
   
+  /**
+   * Mengembalikan nilai score.
+   */
   public int getScore() {
     return score;
   }
