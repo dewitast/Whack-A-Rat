@@ -34,16 +34,47 @@ import weapon.Weapon;
 import weapon.WeaponController;
 import weapon.WeaponView;
 
+/**
+ * Kelas GamePanel (GamePanel.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class GamePanel extends JPanel {
   private static final long serialVersionUID = 3086601523332143745L;
+  /**
+   * Atribut WeaponView pada GamePanel.
+   */
   private WeaponView cursor;
+  /**
+   * Atribut ScoreView pada GamePanel.
+   */
   private ScoreView score;
+  /**
+   * Atribut Score pada GamePanel.
+   */
   private Score skor;
+  /**
+   * Atribut WeaponController pada GamePanel.
+   */
   private WeaponController wco;
+  /**
+   * Atribut ScoreController pada GamePanel.
+   */
   private ScoreController sco;
+  /**
+   * Atribut controller highscore.
+   */
   private HighScoreController hsco;
+  /**
+   * Atribut counter pada GamePanel.
+   */
   private int cnt = 60;
   
+  /**
+   * Konstruktor dengan parameter.
+   * @param vi WeaponView pada GamePanel.
+   * @param we Weapon pada GamePanel.
+   * @param hco Controller highscore pada GamePanel.
+   */
   public GamePanel(WeaponView vi, Weapon we, HighScoreController hco) {
     super();
     setLayout(new BorderLayout());
@@ -110,23 +141,42 @@ public class GamePanel extends JPanel {
     time.start();
   }
   
+  /**
+   * Mengembalikan WeaponView pada GamePanel.
+   * @return cursor. 
+   */
   public WeaponView getWeaponView() {
     return cursor;
   }
   
+  /**
+   * Mengembalikan ScoreView pada GamePanel.
+   * @return score.
+   */
   public ScoreView getScoreView() {
     return score;
   }
   
+  /**
+   * Menambahkan label pada GamePanel.
+   * @param jl label yang akan ditambahkan ke GamePanel.
+   */
   public void addLabel(JLabel jl) {
     cursor.add(jl, BorderLayout.SOUTH);
   }
   
+  /**
+   * Membuat GamePanel terlihat.
+   */
   public void setVisible(boolean bo) {
     super.setVisible(bo);
     cursor.setVisible(bo);
   }
   
+  /**
+   * Mengembalikan score pada permainan.
+   * @return score permainan.
+   */
   public int getScore() {
     return sco.getScore();
   }

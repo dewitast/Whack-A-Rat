@@ -60,42 +60,42 @@ public abstract class Animal {
   }
    /**
    * Mengatur skor binatang.
-   * @param skor binatang.
+   * @param parScore skor binatang.
    */
   public void setScore(int parScore) {
     score = parScore;
   }
    /**
    * Mengatur health point.
-   * @param health point binatang.
+   * @param parHP health point binatang.
    */
   public void setHP(int parHP) {
     hp = parHP;
   }
    /**
    * Mengatur kecepatan binatang.
-   * @param kecepatan binatang.
+   * @param parSpeed kecepatan binatang.
    */
   public void setSpeed(int parSpeed) {
     speed = parSpeed;
   }
   /**
    * Mengembalikan mati/hidup binatang.
-   * @return true jika mati, false jika hidup.
+   * @return isDead. 
    */
    public boolean isDead() {
      return (hp<=0);
    }
    /**
    * Mengurangi HP binatang.
-   * @param banyaknya pengurang HP.
+   * @param power banyaknya pengurang HP.
    */
    public void decreaseHP(int power) {
      hp -= power;
    }
     /**
    * Mengubah kecepatan binatang.
-   * @param besarnya perubahan.
+   * @param changeDifference besarnya perubahan.
    */
    public void changeSpeed(int changeDifference) {
      speed += changeDifference; 

@@ -1,19 +1,20 @@
 package score;
 
-import java.awt.FlowLayout;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+/**
+ * Kelas HighScoreController (HighScoreController.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class HighScoreController {
   /**
-   * Atribut HighScoreView yang dikontrol oleh HighScoreController
+   * Atribut HighScoreView yang dikontrol oleh HighScoreController.
    */
   private HighScoreView hView;
   /**

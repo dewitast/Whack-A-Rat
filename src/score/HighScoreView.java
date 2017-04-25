@@ -2,17 +2,20 @@ package score;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import frame.TimerImageSwapper;
 
+/**
+ * Kelas HighScoreView (HighScoreView.java)
+ * @author NIM/Nama: 13515087/Audry Nyonata
+ */
 public class HighScoreView extends JPanel {
+  private static final long serialVersionUID = 7550017207583526525L;
   /**
    * Atribut gambar-gambar judul menu High Score.
    */
