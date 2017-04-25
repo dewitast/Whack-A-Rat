@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.Timer;
 
 /**
- * Kelas AnimalController
+ * Kelas AnimalController (AnimalController.java)
  * @author
  */
 public class AnimalController {
